@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>수능 응원 페이지 설정 만들기</title>
+<meta name="description" content="구글 시트와 설문 주소를 붙여 넣으면 우리 학교 수능 응원 페이지의 설정 파일 내용을 만들어 줘요.">
+<meta name="theme-color" content="#FFF1E4">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#FFFBF7;--hero:#FFF1E4;--paper:#FFFDFA;--ink:#2E2621;--muted:#786E66;--line:#FFEEDD;--line-strong:#FEDBC4;--accent:#E86E42;--accent-ink:#B3411B;--ok:#2F8F5B;color-scheme:light}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:16px;line-height:1.65;word-break:keep-all}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent-ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+header{background:var(--hero);border-bottom:1.5px dashed var(--line-strong)}
+header .wrap{padding-block:30px 26px}
+.eyebrow{margin:0;font-size:.82rem;font-weight:500;color:var(--muted)}
+.eyebrow::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:7px;vertical-align:1px}
+h1{font-size:1.7rem;font-weight:800;line-height:1.3;letter-spacing:-.02em;margin:10px 0 8px;text-wrap:balance}
+.lede{margin:0;color:var(--muted)}
+main{padding-block:24px 56px}
+h2{font-size:1.15rem;font-weight:800;margin:0 0 4px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:.92rem;padding:11px 16px;border-radius:12px;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line-strong);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label{font-size:.88rem;font-weight:700}
+.field .hint{font-size:.8rem;color:var(--muted)}
+input[type="text"],input[type="url"]{font:inherit;font-size:.95rem;color:var(--ink);background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:11px 14px;width:100%}
+input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(232,110,66,.2)}
+input[aria-invalid="true"]{border-color:#E11D48}
+.err{font-size:.8rem;color:#BE123C;margin:0}
+.result{background:var(--hero);border:1px solid var(--line-strong);border-radius:14px;padding:16px}
+pre{font:500 .82rem/1.6 ui-monospace,Consolas,monospace;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0 12px;overflow-x:auto;white-space:pre}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.status{margin:12px 0 0;font-size:.88rem;font-weight:500}
+.status.ok{color:var(--ok)}
+.status.bad{color:#BE123C}
+.foot{text-align:center;font-size:.8rem;color:var(--muted);margin-top:28px}
+.foot .hand{display:block;font-family:"Gaegu",cursive;font-size:1.6rem;color:var(--accent-ink);margin-bottom:6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">2027학년도 수능 응원 페이지</p>
+    <h1>설정 만들기</h1>
+    <p class="lede">구글 시트와 설문 주소를 붙여 넣으면 <b>config.js</b>에 넣을 내용을 만들어 드려요. 전체 순서는 <a href="guide.html">사용설명서</a>를 봐 주세요.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2>주소 붙여 넣기</h2>
+    <p class="lede" style="margin:0 0 16px;font-size:.9rem">입력한 내용은 이 화면에서만 쓰이고 어디에도 저장되지 않아요.</p>
+    <div class="field">
+      <label for="csv">「공개용」 탭을 웹에 게시한 주소 (필수)</label>
+      <input type="url" id="csv" placeholder="https://docs.google.com/spreadsheets/d/e/2PACX-…/pub?gid=…&amp;single=true&amp;output=csv" autocomplete="off">
+      <p class="err" id="csv-err" hidden>「웹에 게시」에서 나온 주소를 붙여 넣어 주세요. /d/e/2PACX- 로 시작하고 gid= 가 들어 있어야 해요.</p>
+    </div>
+    <div class="field">
+      <label for="form">설문 응답자 링크 (필수)</label>
+      <input type="url" id="form" placeholder="https://docs.google.com/forms/d/e/1FAIpQL…/viewform" autocomplete="off">
+      <span class="hint">「URL 단축」을 끈 긴 주소를 넣어 주세요. forms.gle 짧은 주소는 쓸 수 없어요.</span>
+      <p class="err" id="form-err" hidden>설문 응답자 링크를 붙여 넣어 주세요. /forms/d/e/1FAIpQL 로 시작해야 해요.</p>
+    </div>
+    <div class="field">
+      <label for="school">학교 이름 (선택)</label>
+      <input type="text" id="school" maxlength="30" placeholder="예: ○○고등학교" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="msg">맨 위 응원 문구 (선택)</label>
+      <input type="text" id="msg" maxlength="90" placeholder="3년 동안 정말 애썼어요. / 그 시간을 믿고, 끝까지 응원할게요." autocomplete="off">
+      <span class="hint">비워 두면 위 예시 문구가 나와요. / 를 넣으면 거기서 줄이 바뀌어요.</span>
+    </div>
+    <div class="field">
+      <label for="sign">서명 (선택)</label>
+      <input type="text" id="sign" maxlength="15" placeholder="선생님이" autocomplete="off">
+    </div>
+
+    <div class="result" id="result" hidden>
+      <b>config.js 에 넣을 내용</b>
+      <pre id="out"></pre>
+      <div class="row">
+        <button type="button" class="btn primary" id="copy">내용 복사</button>
+        <button type="button" class="btn" id="check">시트 연결 확인</button>
+      </div>
+      <p class="status" id="status" hidden></p>
+    </div>
+  </section>
+
+  <p class="foot"><span class="hand">여러분의 내일을 늘 응원해요</span><a href="guide.html">사용설명서</a> · <a href="prompt-guide.html">프롬프트 가이드</a> · <a href="./">예시 페이지</a></p>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  function sheetIds(v) {
+    var m = /\/spreadsheets\/d\/e\/(2PACX-[A-Za-z0-9_-]+)\/pub/.exec(v), g = /[?&]gid=([0-9]+)/.exec(v);
+    return m && g ? { s: m[1], g: g[1] } : null;
+  }
+  function formId(v) {
+    var m = /\/forms\/d\/e\/(1FAIpQL[A-Za-z0-9_-]+)\/viewform/.exec(v);
+    return m ? m[1] : null;
+  }
+  function q(v) { return JSON.stringify(String(v).replace(/[<>]/g, "").trim()); }
+  var text = "";
+  function build() {
+    var c = $("csv").value.trim(), f = $("form").value.trim();
+    var sh = sheetIds(c), fid = formId(f);
+    $("csv").setAttribute("aria-invalid", c && !sh ? "true" : "false"); $("csv-err").hidden = !c || !!sh;
+    $("form").setAttribute("aria-invalid", f && !fid ? "true" : "false"); $("form-err").hidden = !f || !!fid;
+    $("status").hidden = true;
+    if (!sh || !fid) { $("result").hidden = true; text = ""; return; }
+    text = "window.SCHOOL = {\n" +
+      "  sheet: " + q("https://docs.google.com/spreadsheets/d/e/" + sh.s + "/pub?gid=" + sh.g + "&single=true&output=csv") + ",\n" +
+      "  form: " + q("https://docs.google.com/forms/d/e/" + fid + "/viewform") + ",\n" +
+      "  name: " + q($("school").value) + ",\n" +
+      "  message: " + q($("msg").value) + ",\n" +
+      "  sign: " + q($("sign").value) + "\n" +
+      "};\n";
+    $("out").textContent = text;
+    $("result").hidden = false;
+  }
+  ["csv", "form", "school", "msg", "sign"].forEach(function (id) { $(id).addEventListener("input", build); });
+
+  $("copy").addEventListener("click", function () {
+    if (!text) return;
+    var done = function () { $("copy").textContent = "복사했어요"; setTimeout(function () { $("copy").textContent = "내용 복사"; }, 1800); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, selectOut); else selectOut();
+  });
+  function selectOut() {
+    var r = document.createRange(); r.selectNodeContents($("out"));
+    var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    $("copy").textContent = "선택했어요. Ctrl+C로 복사해 주세요";
+  }
+
+  $("check").addEventListener("click", function () {
+    var sh = sheetIds($("csv").value), st = $("status");
+    if (!sh) return;
+    st.hidden = false; st.className = "status"; st.textContent = "확인하는 중이에요…";
+    fetch("https://docs.google.com/spreadsheets/d/e/" + sh.s + "/pub?gid=" + sh.g + "&single=true&output=csv&t=" + Date.now())
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (t) {
+        var head = t.split(/\r?\n/)[0].replace(/"/g, "");
+        if (head.indexOf("from,text,type") !== 0) {
+          st.className = "status bad";
+          st.textContent = "시트는 열리지만 「공개용」 탭이 아니에요. 웹에 게시할 때 「공개용」 탭을 골랐는지 확인해 주세요.";
+          return;
+        }
+        var n = t.split(/\r?\n/).slice(1).filter(function (l) { return l.replace(/[",]/g, "").trim(); }).length;
+        st.className = "status ok";
+        st.textContent = "연결됐어요. 지금 페이지에 붙을 편지는 " + n + "통이에요.";
+      })
+      .catch(function () {
+        st.className = "status bad";
+        st.textContent = "시트를 열지 못했어요. 「웹에 게시」를 눌렀는지, 주소를 끝까지 복사했는지 확인해 주세요. 게시 직후라면 1~2분 뒤에 다시 눌러 보세요.";
+      });
+  });
+})();
+</script>
+</body>
+</html>

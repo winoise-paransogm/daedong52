@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>수능 응원 페이지 사용설명서</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+@page{size:A4;margin:12mm 13mm}
+:root{--ink:#2E2621;--muted:#6B615A;--line:#FFEEDD;--line-strong:#FEDBC4;--accent:#E86E42;--accent-ink:#B3411B;--hero:#FFF1E4;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans KR","Malgun Gothic",sans-serif;font-size:9.6pt;line-height:1.5;word-break:keep-all}
+.page{max-width:184mm;margin:0 auto;padding:16px}
+@media print{.page{padding:0}}
+header{background:var(--hero);border:1.5px dashed var(--line-strong);border-radius:10px;padding:10px 14px;margin-bottom:9px}
+.eyebrow{margin:0;font-size:8.4pt;color:var(--muted)}
+h1{margin:2px 0 3px;font-size:16pt;font-weight:800;letter-spacing:-.02em}
+.lede{margin:0;font-size:9.2pt}
+.need{display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 0;font-size:8.6pt;color:var(--muted)}
+.need b{color:var(--ink)}
+h2{font-size:10.6pt;font-weight:800;margin:9px 0 5px;color:var(--accent-ink)}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:5px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:20px 1fr;gap:8px;padding:6px 9px;border:1px solid var(--line);border-radius:8px;break-inside:avoid}
+ol.steps li::before{content:counter(s);width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:8.6pt;display:grid;place-items:center}
+ol.steps b{display:block;font-size:9.8pt}
+ol.steps p{margin:1px 0 0}
+.k{display:inline-block;padding:0 5px;border-radius:4px;background:var(--hero);border:1px solid var(--line-strong);font-weight:500;font-size:8.6pt;white-space:nowrap}
+.url{font-family:ui-monospace,Consolas,monospace;font-size:8.2pt;color:var(--accent-ink);word-break:break-all}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.box{border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.box ul{margin:2px 0 0;padding-left:1.1em}
+.box li{margin:1px 0}
+.warn{background:#FFFBEB;border-color:#FBE7A6}
+.warn h2{color:#92400E;margin-top:0}
+.ops h2{margin-top:0}
+.foot{margin-top:8px;font-size:7.8pt;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <p class="eyebrow">2027학년도 수능 응원 페이지 · 선생님용 사용설명서</p>
+    <h1>우리 학교 수능 응원 페이지 만들기</h1>
+    <p class="lede">선생님, 후배, 학부모님이 쓴 응원 편지를 모아 3학년 학생들에게 보여 주는 웹페이지입니다. 수능 날 준비물, 시간표, 4교시 순서 안내도 함께 들어 있습니다. 비용은 들지 않고, 처음 한 번 20분쯤 걸립니다.</p>
+    <p class="need"><span><b>준비물</b> 구글 계정, GitHub 계정(github.com에서 무료 가입)</span><span><b>필요한 주소</b> 아래 세 가지</span></p>
+  </header>
+
+  <h2>준비하기</h2>
+  <ol class="steps">
+    <li><div><b>시트 복사하기</b>
+      <p>템플릿 주소를 열고 <span class="k">사본 만들기</span>를 누릅니다. 내 구글 드라이브에 응답 시트 사본이 생깁니다.</p>
+      <p class="url">템플릿: docs.google.com/spreadsheets/d/17wH9hABh8IRBjUlfn_y-Z1ZqmSGrqwPA-zwBa6zo3sI/copy</p></div></li>
+    <li><div><b>설문 만들기</b>
+      <p>복사된 시트 위쪽 메뉴에서 <span class="k">수능 응원 → 설문 만들기</span>를 누릅니다(메뉴가 안 보이면 새로고침). 처음 한 번은 권한 확인 창과 함께 <b style="display:inline">경고 문구가 나오는데, 무시하고 진행하면 됩니다.</b> <span class="k">계속</span> → 내 계정 선택 → 「Google에서 확인하지 않은 앱」 화면에서 <span class="k">고급</span> → <span class="k">수능 응원 설문 만들기(으)로 이동</span> → <span class="k">허용</span>을 누릅니다. 승인한 뒤 메뉴를 한 번 더 누르면 설문이 만들어지고, 창에 나온 <b style="display:inline">설문 응답자 링크</b>를 복사해 둡니다.</p></div></li>
+    <li><div><b>「공개용」 탭만 웹에 게시하기</b>
+      <p>복사된 시트에서 <span class="k">파일 → 공유 → 웹에 게시</span>를 엽니다. <span class="k">게시된 콘텐츠 및 설정</span>에서 「공개용」 하나만 고르고, 링크는 <span class="k">공개용</span> · <span class="k">쉼표로 구분된 값(.csv)</span>로 바꾼 뒤 게시합니다. 나온 주소를 복사해 둡니다.</p></div></li>
+    <li><div><b>내 페이지 저장소 만들기</b>
+      <p>GitHub에 로그인하고 아래 주소를 엽니다. <span class="k">Repository name</span>에 영어 이름(예: suneung-2027)을 쓰고 <span class="k">Public</span>을 고른 뒤 <span class="k">Create repository</span>를 누릅니다.</p>
+      <p class="url">github.com/dossamlab/suneung-cheer-kit/generate</p></div></li>
+    <li><div><b>설정 넣기</b>
+      <p>설정 만들기 화면에 2번과 3번의 주소를 붙여 넣고 <span class="k">시트 연결 확인</span> → <span class="k">내용 복사</span>를 누릅니다. 내 저장소에서 <span class="k">config.js</span>를 열고 연필 모양(Edit)을 눌러 내용을 모두 지운 뒤 붙여 넣고 <span class="k">Commit changes</span>를 누릅니다.</p>
+      <p class="url">설정 만들기: dossamlab.github.io/suneung-cheer-kit/make.html</p></div></li>
+    <li><div><b>배포 켜기</b>
+      <p>내 저장소의 <span class="k">Settings → Pages</span>에서 Branch를 <span class="k">main</span>, 폴더를 <span class="k">/ (root)</span>로 고르고 <span class="k">Save</span>를 누릅니다. 1~2분 뒤 <b style="display:inline">https://내아이디.github.io/저장소이름/</b> 이 우리 학교 주소가 됩니다. 이 주소를 학생과 학부모님께 보냅니다.</p></div></li>
+  </ol>
+
+  <div class="two" style="margin-top:8px">
+    <div class="box ops">
+      <h2>운영하기</h2>
+      <ul>
+        <li>편지가 오면 응답 시트의 <b>「반영」 칸을 체크</b>한 편지만 페이지에 붙습니다. 체크하고 5~10분 뒤에 보입니다.</li>
+        <li>체크를 풀면 페이지에서 내려갑니다. 부적절한 글은 체크하지 않으면 됩니다.</li>
+        <li>「시험 끝난 뒤 축하」 편지는 11월 19일 16:37에 화면이 열립니다.</li>
+        <li>탭은 시각에 맞춰 전날 밤, 아침, 시험 중, 끝난 뒤로 저절로 넘어갑니다.</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h2>꼭 지켜 주세요</h2>
+      <ul>
+        <li>웹에 게시할 때 <b>전체 문서가 아니라 「공개용」 탭 하나만</b> 고릅니다. 전체를 게시하면 체크하지 않은 편지까지 공개됩니다.</li>
+        <li>「공개용」 탭의 수식, 응답 시트의 열 이름과 순서, 설문 선택지 문구는 바꾸지 않습니다.</li>
+        <li>권한 확인 창의 경고는 직접 만든 스크립트라 나오는 것입니다. 스크립트는 선생님 계정으로 이 시트 안에서만 동작하고 바깥으로 정보를 보내지 않습니다.</li>
+        <li>카톡 미리보기가 옛것으로 나오면 주소 끝에 <b>?v=2</b>를 붙여 보냅니다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="foot">시간표와 유의사항은 한국교육과정평가원 「2027학년도 대학수학능력시험 시행세부계획 공고」(2026. 7. 1.)와 교육부 수험생 유의사항을 따랐습니다. 시험장에서는 감독관의 안내를 따릅니다.</p>
+</div>
+</body>
+</html>

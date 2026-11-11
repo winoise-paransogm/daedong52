@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>수능 날, 곁에서 응원할게요</title>
+<meta name="description" content="선생님과 후배, 부모님이 쓴 응원 편지를 읽어 보세요. 수능 날 준비물과 시간표도 함께 담았어요.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="2027학년도 수능 응원">
+<meta property="og:title" content="수능 날, 곁에서 응원할게요">
+<meta property="og:description" content="선생님과 후배, 부모님이 쓴 응원 편지를 읽어 보세요. 수능 날 준비물과 시간표도 함께 담았어요.">
+<meta property="og:image" content="https://dossamlab.github.io/suneung-cheer-kit/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFF1E4">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: 학생에게 부치는 편지 한 통. 평평한 편지지 머리(소인 도장) 아래로 종이 카드가 한 줄로 이어짐. 색은 따뜻한 테라코타 한 가지 */
+:root,:root[data-theme="dark"]{
+  --bg:#FFFBF7;
+  --hero:#FFF1E4;
+  --paper:#FFFDFA;
+  --ink:#2E2621;
+  --muted:#786E66;
+  --line:#FFEEDD;
+  --line-strong:#FEDBC4;
+  --accent:#E86E42;
+  --accent-ink:#B3411B;
+  --accent-soft:#FFF6EF;
+  --butter:#FFF7D6;
+  --blush:#FFEDEA;
+  --skyc:#EAF3FB;
+  --mint:#EAF6EC;
+  --ok:#2F8F5B;
+  --shadow-card:0 2px 10px rgba(0,0,0,.04);
+  --shadow-soft:0 4px 20px -2px rgba(220,160,130,.15);
+  --shadow-sticky:0 8px 24px -4px rgba(200,120,90,.18);
+  --body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --hand:"Gaegu","Nanum Pen Script",cursive;
+  --pen:"Nanum Pen Script","Gaegu",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img,svg{max-width:100%}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;margin:0;word-break:keep-all;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--hero)}
+.wrap{max-width:600px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent-ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+b,strong{font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- 머리: 평평한 편지지와 소인 ---------- */
+.hero{background:var(--hero);border-bottom:1.5px dashed var(--line-strong)}
+.hero .wrap{position:relative;padding-block:30px 24px}
+.hero .wrap > p{position:relative}
+.stamp{position:absolute;top:16px;right:16px;width:130px;height:auto;color:#F2A680;transform:rotate(9deg);pointer-events:none}
+.stamp text{font-family:var(--body)}
+.eyebrow{margin:0;max-width:calc(100% - 132px);display:flex;flex-direction:column;font-size:.82rem;font-weight:500;line-height:1.55;color:var(--muted)}
+.eyebrow span:first-child::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:7px;vertical-align:1px}
+.dday{font-weight:800;font-size:clamp(3.6rem,17vw,4.6rem);line-height:1;letter-spacing:-.03em;margin:.24em 0 .12em}
+.dday.long{font-size:clamp(2.4rem,11vw,3.2rem);letter-spacing:-.02em;margin-top:.6em}
+.dday-sub{font-size:1.22rem;font-weight:700;margin:0}
+.dday-sub em{font-style:normal;color:var(--accent);text-decoration:underline wavy var(--line-strong);text-decoration-thickness:2px;text-underline-offset:6px}
+.letter{margin:20px 0 0;padding-top:16px;border-top:1.5px dashed var(--line-strong);font-family:var(--hand);font-size:clamp(1.3rem,5.4vw,1.5rem);line-height:1.5;letter-spacing:.01em;color:#3D2E24}
+.letter .sign{display:block;margin-top:4px;text-align:right;font-family:var(--pen);font-size:1.25rem;color:var(--accent-ink)}
+.letter .sign::before{content:"";display:inline-block;width:22px;height:1.5px;background:currentColor;vertical-align:middle;margin-right:8px}
+
+/* ---------- 탭 ---------- */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-block:12px;border-bottom:1px solid var(--line)}
+.tabs ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.tabs button{width:100%;font:inherit;font-size:.78rem;font-weight:500;color:color-mix(in srgb,var(--ink) 80%,transparent);background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 2px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;white-space:nowrap;transition:background .2s,color .2s,border-color .2s,transform .15s}
+.tabs button svg{width:20px;height:20px;fill:none;stroke:var(--muted);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tabs button:active{transform:scale(.96)}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700;box-shadow:0 6px 14px -6px rgba(232,110,66,.55)}
+.tabs button[aria-selected="true"] svg{stroke:#fff}
+#tab-wall[aria-selected="true"] svg{fill:#fff}
+
+/* ---------- 본문 ---------- */
+main{padding-bottom:48px}
+section[role="tabpanel"]{padding-top:24px}
+.kicker{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;color:var(--accent-ink);background:var(--line);padding:2px 9px;border-radius:6px;margin-bottom:6px}
+h2{font-size:1.45rem;font-weight:700;line-height:1.35;letter-spacing:-.015em;margin:0 0 6px;text-wrap:balance}
+h3{font-size:1rem;font-weight:700;line-height:1.45;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+h3 .ic{width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;background:var(--line);color:var(--accent-ink);flex:none}
+h3 .ic svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lede{color:var(--muted);font-size:.95rem;margin:0 0 20px;max-width:60ch}
+.block{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow-card)}
+.sub{color:var(--muted);font-size:.86rem;margin:0 0 14px}
+.note{font-size:.86rem;color:#5E534B;margin:14px 0 0;padding:12px 14px;background:var(--accent-soft);border:1px solid var(--line);border-radius:12px}
+.note strong{color:var(--ink)}
+.note.caution{background:#FFFBEB;border-color:#FBE7A6;color:#78350F}
+.note.caution strong{color:#78350F}
+.block:has(> .lost-h){background:#FFF1F2;border-color:#FECDD3}
+.lost-h{color:#881337}
+.lost-h .ic{background:#FFE4E6;color:#BE123C}
+.block:has(> .lost-h) .sub{color:#9F1239}
+
+/* 체크리스트 */
+.meter{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.meter .bar{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden}
+.meter .bar i{display:block;height:100%;width:0;border-radius:99px;background:var(--accent);transition:width .3s ease}
+.meter span{font-size:.75rem;font-weight:700;color:var(--accent-ink);background:var(--line);padding:2px 10px;border-radius:99px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.meter.done .bar i{background:var(--ok)}
+.meter.done span{color:#065F46;background:#D1FAE5}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.check{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;padding:12px;border-radius:12px;background:#FFFAF4;border:1px solid var(--line);cursor:pointer;transition:background .2s}
+.check:hover{background:var(--accent-soft)}
+.check input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.box{width:22px;height:22px;border-radius:6px;border:2px solid var(--line-strong);display:grid;place-items:center;background:#fff;transition:background .2s,border-color .2s}
+.box svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:22;stroke-dashoffset:22;transition:stroke-dashoffset .22s ease}
+.check input:checked + .box{background:var(--accent);border-color:var(--accent)}
+.check input:checked + .box svg{stroke-dashoffset:0}
+.check input:focus-visible + .box{outline:3px solid var(--accent);outline-offset:3px}
+.check .txt b{display:block;font-size:.94rem;font-weight:500;line-height:1.45}
+.check .txt span{display:block;font-size:.82rem;color:var(--muted);line-height:1.5}
+.check:has(input:checked) .txt b{text-decoration:line-through;color:#A89F97}
+.cheer{display:none;margin:12px 0 0;padding:10px 12px;border-radius:12px;background:#ECFDF5;border:1px solid #A7F3D0;color:#065F46;font-size:.86rem;font-weight:500;text-align:center}
+.meter.done + .checks + .cheer{display:block}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pair > div{min-width:0;padding:12px;border-radius:12px;border:1px solid}
+.pair .p1{background:#FFF1F2;border-color:#FFE4E6}
+.pair .p2{background:#FFFBEB;border-color:#FEF3C7}
+.pair b{display:inline-block;font-size:.74rem;padding:2px 8px;border-radius:6px;margin-bottom:6px}
+.pair .p1 b{background:#FECDD3;color:#9F1239}
+.pair .p2 b{background:#FDE68A;color:#92400E}
+.pair ul{margin:0;padding-left:1.1em;font-size:.88rem;color:#5E534B}
+
+/* 시계 */
+.clock{display:grid;grid-template-columns:minmax(0,170px) 1fr;gap:20px;align-items:center}
+.clock svg{width:100%;max-width:170px;height:auto;display:block}
+.digital{display:flex;flex-direction:column-reverse;align-items:center;background:var(--hero);border-radius:12px;padding:10px 12px 12px;font-weight:800;font-variant-numeric:tabular-nums;font-size:clamp(1.7rem,8vw,2rem);line-height:1.2;letter-spacing:.08em}
+.digital small{font-size:.72rem;font-weight:700;letter-spacing:0;color:var(--accent-ink)}
+.steps{margin:14px 0 0;padding:0;list-style:none;counter-reset:s;display:grid;gap:8px;font-size:.88rem;color:#5E534B}
+.steps li{counter-increment:s;display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start}
+.steps li::before{content:counter(s);width:22px;height:22px;border-radius:50%;background:var(--line);color:var(--accent-ink);font-weight:700;font-size:.76rem;display:grid;place-items:center;margin-top:1px}
+
+/* 4교시 카드 */
+.field{display:grid;gap:6px;margin-bottom:12px}
+.field label{font-size:.82rem;font-weight:700}
+select,input[type="text"]{font:inherit;font-size:.95rem;color:var(--ink);background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:11px 14px;width:100%}
+select:focus,input[type="text"]:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(232,110,66,.2)}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pick .field{min-width:0}
+.ticket{margin-top:6px;border-radius:14px;background:var(--accent-soft);position:relative;overflow:hidden}
+.ticket .cap{padding:13px 18px 11px;display:flex;justify-content:space-between;gap:8px;align-items:baseline;border-bottom:1.5px dashed var(--line-strong)}
+.ticket .cap b{font-size:.98rem}
+.ticket .cap span{font-size:.82rem;color:var(--muted);font-weight:500}
+.ticket ol{list-style:none;margin:0;padding:8px 0}
+.ticket li{display:grid;grid-template-columns:98px 1fr;gap:12px;padding:7px 18px;align-items:baseline}
+.ticket .t{font-variant-numeric:tabular-nums;font-size:.82rem;color:var(--muted);font-weight:500}
+.ticket .s{font-weight:500}
+.ticket .s em{font-style:normal;font-weight:800;font-size:1.12rem;color:var(--accent-ink)}
+.ticket .s small{display:inline-block;margin-left:6px;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:99px;background:#fff;border:1px solid var(--line-strong);color:var(--accent-ink);vertical-align:2px}
+.ticket li.quiet .s{font-weight:400;font-size:.9rem;color:var(--muted)}
+.ticket::before,.ticket::after{content:"";position:absolute;top:38px;width:18px;height:18px;border-radius:50%;background:var(--paper)}
+.ticket::before{left:-9px}.ticket::after{right:-9px}
+.tips{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px;font-size:.88rem;color:#5E534B}
+.tips li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start}
+.tips li::before{content:"";width:20px;height:20px;border-radius:50%;margin-top:2px;background:var(--line) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z' fill='%23E86E42'/%3E%3C/svg%3E") center/12px no-repeat}
+.tips b{color:var(--ink)}
+
+/* 단추 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:.9rem;padding:12px 14px;border-radius:12px;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line-strong);cursor:pointer;transition:transform .15s,background .2s}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:var(--shadow-soft)}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.maps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+#go-kakao{background:#FEE500;border-color:#FEE500;color:#191600;box-shadow:none}
+#go-naver{background:#03C75A;border-color:#03C75A;color:#04361A}
+.write{display:grid;gap:10px;margin:0 0 30px}
+.write .btn{width:100%;padding:14px;border-radius:16px;font-size:1rem;font-weight:500}
+.write span{text-align:center;font-size:.8rem;color:var(--muted)}
+
+/* 지금 몇 교시 */
+.now{border-radius:16px;padding:20px;margin-bottom:16px;background:var(--hero);border:1px solid var(--line-strong)}
+.now .k{display:inline-block;font-size:.74rem;font-weight:700;color:var(--accent-ink);background:#fff;padding:2px 10px;border-radius:99px}
+.now .title{font-weight:800;font-size:clamp(1.5rem,6.6vw,1.9rem);line-height:1.3;letter-spacing:-.015em;margin:8px 0 2px}
+.now .range{font-variant-numeric:tabular-nums;font-weight:500;color:var(--muted)}
+.now .left{margin-top:14px;font-weight:700}
+.now .bar{height:8px;border-radius:99px;background:#fff;overflow:hidden;margin-top:8px}
+.now .bar i{display:block;height:100%;border-radius:99px;background:var(--accent);width:0;transition:width 1s linear}
+.now .extra{margin:12px 0 0;font-size:.88rem;color:#5E534B}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl li{display:grid;grid-template-columns:16px 100px 1fr;gap:12px;padding:9px 0;align-items:baseline;position:relative}
+.tl li::before{content:"";grid-column:1;width:12px;height:12px;border-radius:50%;background:var(--line-strong);border:2px solid #fff;justify-self:center;align-self:center;position:relative;z-index:1}
+.tl li.gap::before{background:var(--line)}
+.tl li::after{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--line)}
+.tl li:first-child::after{top:50%}.tl li:last-child::after{bottom:50%}
+.tl .t{font-variant-numeric:tabular-nums;font-size:.82rem;color:var(--muted);font-weight:500}
+.tl .s{min-width:0}
+.tl .s b{font-size:.94rem}
+.tl .s span{display:block;font-size:.8rem;color:var(--muted);line-height:1.5}
+.tl li.gap .s b{font-weight:400;color:var(--muted)}
+.tl li.past{opacity:.45}
+.tl li.cur::before{background:var(--accent);box-shadow:0 0 0 4px var(--line)}
+.tl li.cur .s b,.tl li.cur .t{color:var(--accent-ink)}
+
+/* 끝난 뒤 */
+.tl.todo li{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:12px 14px;border-radius:12px;background:#FFFAF4;margin-bottom:8px}
+.tl.todo li::before,.tl.todo li::after{display:none}
+.tl.todo .s{order:1}
+.tl.todo .t{order:2;font-size:.84rem;font-weight:700;color:var(--accent-ink);text-align:right;white-space:nowrap}
+.lock{text-align:center;padding:28px 20px 24px;border-radius:16px;background:var(--butter);border:1.5px dashed #EFD58C;margin-bottom:16px}
+.lock svg{width:84px;height:auto;display:block;margin:0 auto 10px}
+.lock svg rect{fill:#fff}
+.lock .big{font-weight:800;font-size:1.3rem;letter-spacing:-.01em;margin:4px 0}
+.lock p{margin:0;font-size:.9rem;font-weight:500;color:#6B5A2E}
+
+/* 응원 벽: 편지 */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.chip{font:inherit;font-size:.86rem;font-weight:500;padding:7px 14px;border-radius:99px;border:1px solid var(--line-strong);background:#fff;color:color-mix(in srgb,var(--ink) 80%,transparent);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(46,38,33,.18)}
+.chip .n{font-variant-numeric:tabular-nums;opacity:.7}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px 18px;padding-top:12px}
+.msg{position:relative;border-radius:16px;padding:28px 20px 16px;min-width:0;border:1px solid transparent;box-shadow:var(--shadow-sticky);transform:rotate(-.5deg)}
+.msg:nth-child(4n+2){transform:rotate(.6deg)}
+.msg:nth-child(4n+3){transform:rotate(-.3deg)}
+.msg:nth-child(4n){transform:rotate(.7deg)}
+.g-teacher{background:var(--butter);border-color:#FAE5A8}
+.g-junior{background:var(--skyc);border-color:#CFE1F2}
+.g-parent{background:var(--blush);border-color:#F8CFC8}
+.g-other{background:var(--mint);border-color:#CBE5D0}
+.msg::before{content:"";position:absolute;top:-11px;left:50%;width:72px;height:22px;transform:translateX(-50%) rotate(-2deg);background:rgba(235,175,140,.6);border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.msg p{font-family:var(--hand);font-size:1.3rem;line-height:1.6;letter-spacing:.01em;color:#2C221A;margin:0 0 16px;overflow-wrap:anywhere;white-space:pre-line}
+.msg .from{display:flex;justify-content:flex-end;align-items:center;gap:8px;font-family:var(--hand);font-size:1.2rem;font-weight:700}
+.msg .who{font-family:var(--body);font-size:.72rem;font-weight:700;padding:2px 10px;border-radius:99px;background:rgba(255,255,255,.8);border:1px solid rgba(254,219,196,.7);color:var(--accent-ink)}
+.empty{text-align:center;padding:34px 20px 30px;border-radius:16px;background:var(--paper);border:1.5px dashed var(--line-strong)}
+.empty svg{width:100px;height:auto;display:block;margin:0 auto 12px}
+.empty b{font-size:1.05rem;display:block;margin-bottom:4px}
+.empty span{color:var(--muted);font-size:.9rem}
+.count{font-weight:700;color:var(--accent)}
+.msg .who.sample{background:#fff;border-style:dashed;color:var(--muted)}
+.sample-note{display:block;margin:0 0 18px;padding:10px 14px;border-radius:12px;background:var(--accent-soft);border:1px dashed var(--line-strong);font-size:.86rem;color:#5E534B}
+.sample-note b{color:var(--accent-ink)}
+
+.foot{margin:40px 0 0;padding-top:26px;border-top:1px solid var(--line);text-align:center;font-size:.78rem;line-height:1.7;color:var(--muted)}
+.foot .hand{display:block;font-family:var(--hand);font-weight:700;font-size:1.9rem;line-height:1.3;letter-spacing:.03em;color:var(--accent-ink);margin-bottom:14px}
+
+@media (max-width:520px){
+  .pair,.pick{grid-template-columns:1fr}
+  .clock{grid-template-columns:1fr;justify-items:center}
+  .clock .digital{width:100%}
+  .tabs ul{gap:5px}
+  .tabs button{font-size:.75rem}
+  .ticket li{grid-template-columns:90px 1fr;padding:7px 16px}
+  .tl li{grid-template-columns:16px 92px 1fr;gap:10px}
+  .block{padding:18px 16px}
+}
+/* ---------- PC: 넓은 화면에서는 머리를 좌우로 나누고 안내 카드를 두 단으로 ---------- */
+@media (min-width:900px){
+  .wrap{max-width:1000px;padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:56px;padding-block:44px 40px}
+  .hero .eyebrow{grid-column:1;flex-direction:row;flex-wrap:wrap;gap:0 10px;max-width:none}
+  .hero .eyebrow span + span::before{content:"·";margin-right:10px;color:var(--line-strong)}
+  .hero .dday{grid-column:1;font-size:6rem}
+  .hero .dday.long{font-size:3.6rem}
+  .hero .dday-sub{grid-column:1;font-size:1.45rem}
+  .hero .letter{grid-column:2;grid-row:1 / span 3;align-self:end;margin:0;padding:22px 0 0 34px;border-top:0;border-left:1.5px dashed var(--line-strong);font-size:1.75rem}
+  .stamp{top:58px;right:auto;left:calc(50% - 210px);width:150px}
+  .tabs ul{max-width:640px;margin:0 auto}
+  .tabs button{font-size:.85rem;padding:11px 4px 9px}
+  section[role="tabpanel"]{padding-top:36px}
+  h2{font-size:1.75rem}
+  .lede{font-size:1rem;margin-bottom:26px}
+  #night,#morning{columns:2;column-gap:20px}
+  #live{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:20px;align-items:start}
+  #live > .kicker,#live > h2,#live > .lede{grid-column:1 / -1;justify-self:start}
+  #live .now{position:sticky;top:calc(env(safe-area-inset-top,0px) + 100px)}
+  #night > .kicker,#morning > .kicker{display:table}
+  #night > h2,#night > .lede,#morning > h2,#morning > .lede{column-span:all}
+  #night .block,#morning .block{break-inside:avoid;display:inline-block;width:100%;margin-bottom:20px}
+  #night .clock{grid-template-columns:1fr;justify-items:center}
+  #night .clock .digital{width:100%}
+  #night .pick{grid-template-columns:1fr}
+  .write{grid-template-columns:auto 1fr;align-items:center;column-gap:16px;margin-bottom:34px}
+  .write .btn{width:auto;padding:14px 34px}
+  .write span{text-align:left}
+  .wall{grid-template-columns:repeat(3,minmax(0,1fr));gap:34px 24px;align-items:start}
+  #after .block{max-width:640px}
+  .foot{margin-top:56px}
+}
+@media (min-width:900px) and (max-width:1023px){
+  .wall{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="hero" data-tab="wall">
+  <div class="wrap">
+    <svg class="stamp" viewBox="0 0 170 120" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+        <path d="M4 42c7-6 13 6 20 0s13 6 20 0 13 6 20 0"/>
+        <path d="M4 60c7-6 13 6 20 0s13 6 20 0 13 6 20 0"/>
+        <path d="M4 78c7-6 13 6 20 0s13 6 20 0 13 6 20 0"/>
+        <circle cx="112" cy="60" r="52"/>
+        <circle cx="112" cy="60" r="41" stroke-width="1.8" stroke-dasharray="1 6"/>
+      </g>
+      <text x="112" y="59" text-anchor="middle" font-size="24" font-weight="800" fill="currentColor">11.19</text>
+      <text x="112" y="80" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">수능 응원</text>
+    </svg>
+    <p class="eyebrow"><span>2027학년도 대학수학능력시험</span><span>11월 19일 목요일</span></p>
+    <p class="dday" id="dday">D-9</p>
+    <p class="dday-sub" id="dday-sub">수능까지 <em>9일</em> 남았어요</p>
+    <p class="letter" id="letter">3년 동안 정말 애썼어요.<br>그 시간을 믿고, 끝까지 응원할게요.<span class="sign">선생님이</span></p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="화면 선택">
+  <div class="wrap">
+    <ul role="tablist">
+      <li><button role="tab" id="tab-wall" aria-controls="wall" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>응원</button></li>
+      <li><button role="tab" id="tab-night" aria-controls="night" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>전날 밤</button></li>
+      <li><button role="tab" id="tab-morning" aria-controls="morning" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M5 18a7 7 0 0 1 14 0"/><path d="M3 21h18M12 4v4M5.6 10.6l1.4 1.4M18.4 10.6 17 12"/></svg>아침</button></li>
+      <li><button role="tab" id="tab-live" aria-controls="live" aria-selected="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>시험 중</button></li>
+      <li><button role="tab" id="tab-after" aria-controls="after" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.6l5.8-.8z"/></svg>끝난 뒤</button></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <!-- 응원 -->
+  <section role="tabpanel" id="wall" aria-labelledby="tab-wall">
+    <h2>선생님, 후배, 부모님이 보낸 편지</h2>
+    <p class="lede">함께 지낸 사람들이 한 장씩 써서 붙였어요. <span id="wall-count"></span></p>
+    <p class="write" id="write" hidden><a class="btn primary" id="write-link" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>편지 남기기</a><span>선생님, 후배, 학부모님 누구나 쓸 수 있어요.</span></p>
+    <div id="wall-list"></div>
+  </section>
+
+  <!-- 전날 밤 -->
+  <section role="tabpanel" id="night" aria-labelledby="tab-night" hidden>
+    <span class="kicker">전날 준비</span>
+    <h2>내일을 위한 준비</h2>
+    <p class="lede">가방을 싸고, 시계를 맞추고, 4교시 순서만 확인하면 돼요.</p>
+
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="3"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></span>가방에서 빼 둘 물건</h3>
+      <p class="sub">시험장에 가져가면 안 되는 물건이에요. 뺐으면 칸을 눌러 표시해요.</p>
+      <div class="meter" id="ban-meter"><div class="bar"><i></i></div><span></span></div>
+      <ul class="checks" id="ban-list"></ul>
+      <p class="cheer">가방 정리 끝! 잘했어요.</p>
+      <p class="note caution"><strong>깜빡하고 가져왔다면 1교시 시작 전에 감독관에게 내면 괜찮아요.</strong> 자기가 보는 시험이 모두 끝나면 돌려받아요. 내지 않고 갖고 있다가 걸리면 시험 시간이든 쉬는 시간이든 부정행위로 처리되고 시험이 무효가 돼요.</p>
+    </div>
+
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span>쉬는 시간엔 되지만 시험 중엔 안 되는 것</h3>
+      <div class="pair" style="margin-top:12px">
+        <div class="p1"><b>시험 중 갖고 있으면 부정행위</b><ul><li>교과서</li><li>참고서</li><li>기출문제지</li></ul></div>
+        <div class="p2"><b>시험 중 걸리면 압수</b><ul><li>연습장</li><li>개인 샤프</li><li>볼펜, 예비 마킹용 플러스펜</li><li>기름종이</li></ul></div>
+      </div>
+      <p class="sub" style="margin:10px 0 0">압수에 따르지 않으면 부정행위로 처리될 수 있어요.</p>
+      <p class="note">샤프와 검은색 컴퓨터용 사인펜은 1교시 전에 시험실에서 나눠 줘요. 직접 가져가도 되는 필기구는 검은색 컴퓨터용 사인펜, 흑색 연필, 지우개, 흰색 수정테이프, 0.5mm 흑색 샤프심뿐이에요. 답안지에는 검은색 컴퓨터용 사인펜만 써요.</p>
+    </div>
+
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 10v3l2 1.5M10 3h4"/></svg></span>아날로그 시계 맞추기</h3>
+      <div class="clock" style="margin-top:12px">
+        <svg viewBox="0 0 200 200" role="img" aria-label="한국 표준시 아날로그 시계">
+          <circle cx="100" cy="100" r="94" fill="var(--paper)" stroke="var(--accent)" stroke-width="5"/>
+          <circle cx="100" cy="100" r="84" fill="var(--accent-soft)" opacity=".55"/>
+          <g id="ticks"></g>
+          <line id="hand-h" x1="100" y1="108" x2="100" y2="56" stroke="var(--ink)" stroke-width="7" stroke-linecap="round"/>
+          <line id="hand-m" x1="100" y1="112" x2="100" y2="32" stroke="var(--ink)" stroke-width="4.5" stroke-linecap="round"/>
+          <line id="hand-s" x1="100" y1="118" x2="100" y2="24" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="6" fill="var(--accent)"/>
+        </svg>
+        <div>
+          <div class="digital" id="digital">--:--:--<small>한국 표준시</small></div>
+          <ol class="steps">
+            <li>휴대폰으로 이 화면을 열어요. 휴대폰은 보통 시간이 자동으로 맞춰져 있어요.</li>
+            <li>용두를 당겨 시침과 분침을 화면과 같게 맞춰요.</li>
+            <li>초침이 멈추는 시계라면 화면의 초가 00이 되는 순간 용두를 눌러요.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="note caution" id="clock-note" hidden></p>
+      <p class="note">시침·분침이 있는 아날로그 시계만 가져갈 수 있어요. 결제·통신(블루투스) 기능이나 LCD·LED 화면이 있으면 안 돼요. 1교시와 3교시 시작 전에는 시계를 신분증·수험표와 함께 책상 위에 올려 두고 감독관의 확인을 받아요. 다른 교시에도 감독관이 시계를 확인해요.</p>
+    </div>
+
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span>내 4교시 순서 카드</h3>
+      <p class="sub">탐구 과목을 고르면 4교시에 무엇을 언제 보는지 정리해 줘요.</p>
+      <div class="field">
+        <label for="mode">탐구 영역</label>
+        <select id="mode">
+          <option value="ss2">사회·과학탐구 2과목</option>
+          <option value="ss1">사회·과학탐구 1과목</option>
+          <option value="voc2">직업탐구 2과목</option>
+          <option value="voc1">직업탐구 1과목</option>
+          <option value="none">탐구 안 봄</option>
+        </select>
+      </div>
+      <div class="pick" id="pick">
+        <div class="field" id="f-a"><label for="sub-a" id="lab-a">과목 1</label><select id="sub-a"></select></div>
+        <div class="field" id="f-b"><label for="sub-b" id="lab-b">과목 2</label><select id="sub-b"></select></div>
+      </div>
+      <div class="ticket" id="card4"></div>
+      <ul class="tips" id="warn4"></ul>
+    </div>
+  </section>
+
+  <!-- 아침 -->
+  <section role="tabpanel" id="morning" aria-labelledby="tab-morning" hidden>
+    <span class="kicker">입실 안내</span>
+    <h2>수능 날 아침</h2>
+    <p class="lede"><b>08:10까지</b> 시험실에 들어가면 돼요. 1교시를 보지 않는 학생도 마찬가지예요.</p>
+
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></span>챙길 것</h3>
+      <div class="meter" id="bring-meter" style="margin-top:10px"><div class="bar"><i></i></div><span></span></div>
+      <ul class="checks" id="bring-list"></ul>
+      <p class="cheer">준비 끝! 천천히 다녀와요.</p>
+    </div>
+
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span>고사장 길찾기</h3>
+      <div class="field" style="margin-top:10px">
+        <label for="place">고사장 이름</label>
+        <input type="text" id="place" placeholder="예: ○○시 ○○고등학교" autocomplete="off">
+      </div>
+      <div class="maps">
+        <a class="btn primary" id="go-kakao" target="_blank" rel="noopener" aria-disabled="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>카카오맵 열기</a>
+        <a class="btn" id="go-naver" target="_blank" rel="noopener" aria-disabled="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>네이버 지도 열기</a>
+      </div>
+      <p class="note">이름이 같은 학교가 다른 지역에 있을 수 있으니 시·군 이름을 같이 적어요. 시험 전날인 11월 18일 예비소집에 꼭 참석해서 수험표를 받고, 시험장 위치를 확인해요.</p>
+    </div>
+
+    <div class="block">
+      <h3 class="lost-h"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg></span>수험표를 잃어버렸다면</h3>
+      <p class="sub" style="margin:8px 0 0">응시원서에 붙인 것과 같은 사진 1장과 신분증을 들고, 시험 당일 오전 8시까지 시험장 안의 시험 관리본부로 가면 다시 받을 수 있어요. 사진이 없어도 시험 관리본부에 알리면 임시 수험표를 받을 수 있어요.</p>
+    </div>
+
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg></span>올해 달라진 점</h3>
+      <ul class="tips">
+        <li><span><b>수험표 뒷면에 가채점표가 인쇄돼 있어요.</b> 시험 시간 안에만 적을 수 있어요. 종료령이 울린 뒤에 적으면 부정행위예요. 종이 울리면 바로 펜을 내려놓아요.</span></li>
+        <li><span><b>평소 쓰던 검은색 컴퓨터용 사인펜을 가져가도 돼요.</b> 다만 빨간 펜이 붙어 있는 것처럼 다른 기능이 섞인 펜은 쓸 수 없어요.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 시험 중 -->
+  <section role="tabpanel" id="live" aria-labelledby="tab-live" hidden>
+    <span class="kicker">시험 시간</span>
+    <h2>지금 몇 교시일까요</h2>
+    <p class="lede">시험장에는 휴대폰을 가져갈 수 없어서 시험 중에는 연락이 닿지 않아요. 기다리는 가족을 위한 화면이에요.</p>
+    <div class="now" id="now"></div>
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>오늘의 시간표</h3>
+      <ul class="tl" id="tt" style="margin-top:12px"></ul>
+      <p class="note">제2외국어/한문을 보지 않는 학생은 16:37에 끝나요. 2~5교시는 시험 시작 10분 전까지 입실해요. 시험편의를 제공받는 수험생은 시험 시간이 이 표와 달라요.</p>
+    </div>
+  </section>
+
+  <!-- 끝난 뒤 -->
+  <section role="tabpanel" id="after" aria-labelledby="tab-after" hidden>
+    <span class="kicker">수능 이후</span>
+    <h2>정말 수고 많았어요</h2>
+    <p class="lede">시험이 끝나면 열리는 편지와, 끝나고 챙길 일을 모았어요.</p>
+    <div id="after-msgs"></div>
+    <div class="block">
+      <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></span>시험 끝나고 할 일</h3>
+      <ul class="tl todo" style="margin-top:12px">
+        <li class="exam"><span class="t">11월 19일</span><span class="s"><b>맡긴 물건 돌려받기</b><span>1교시 전에 감독관에게 낸 물건은 자기가 보는 시험이 모두 끝난 뒤 돌려받아요.</span></span></li>
+        <li class="exam"><span class="t">11월 19일</span><span class="s"><b>수험표 뒷면 가채점표로 가채점</b><span>문제와 정답은 교시별로 <a href="https://www.kice.re.kr" target="_blank" rel="noopener">한국교육과정평가원 홈페이지</a>에 올라와요. 시험 시간이 연장되는 수험생의 시험까지 끝난 뒤에 올라와서, 교시가 끝나는 시각보다 늦어요.</span></span></li>
+        <li class="exam"><span class="t">11월 19~23일</span><span class="s"><b>문제·정답 이의신청</b><span>평가원 홈페이지의 전용 게시판에서 받아요.</span></span></li>
+        <li class="exam"><span class="t">12월 1일 화</span><span class="s"><b>정답 확정 발표</b><span>17:00에 평가원 홈페이지에 올라와요.</span></span></li>
+        <li class="exam"><span class="t">12월 11일 금</span><span class="s"><b>성적통지표 받는 날</b><span>재학생은 학교에서 09:00 이후 받아요. 14:00부터는 <a href="https://mycsat.re.kr" target="_blank" rel="noopener">mycsat.re.kr</a>에서 본인인증 후 온라인으로도 발급돼요.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="foot"><span class="hand">여러분의 내일을 늘 응원해요</span>시간표와 유의사항은 한국교육과정평가원 「2027학년도 대학수학능력시험 시행세부계획 공고」(2026. 7. 1.)와 교육부 수험생 유의사항을 따랐어요.<br>시험장에서 감독관의 안내가 다르면 감독관 안내를 따라요.<br><a href="make.html">설정 만들기</a></p>
+</main>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); };
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem("suneung27:" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem("suneung27:" + k, JSON.stringify(v)); } catch (e) {} }
+  };
+
+  /* ---------- 학교 설정: config.js 의 window.SCHOOL 에서 읽음 ---------- */
+  var SC = window.SCHOOL || {};
+  function txt(v, max) { v = String(v || "").replace(/[<>]/g, "").trim(); return v.length > max ? v.slice(0, max) : v; }
+  var sm = /\/spreadsheets\/d\/e\/(2PACX-[A-Za-z0-9_-]+)\/pub/.exec(SC.sheet || ""), gm = /[?&]gid=([0-9]+)/.exec(SC.sheet || "");
+  var fm = /\/forms\/d\/e\/(1FAIpQL[A-Za-z0-9_-]+)\/viewform/.exec(SC.form || "");
+  var CFG = { s: sm ? sm[1] : "", g: gm ? gm[1] : "", f: fm ? fm[1] : "", n: txt(SC.name, 30), m: txt(SC.message, 90), w: txt(SC.sign, 15) };
+  var SHEET_CSV = CFG.s && CFG.g ? "https://docs.google.com/spreadsheets/d/e/" + CFG.s + "/pub?gid=" + CFG.g + "&single=true&output=csv" : "";
+  if (CFG.f) {
+    $("#write-link").href = "https://docs.google.com/forms/d/e/" + CFG.f + "/viewform";
+    $("#write").hidden = false;
+  }
+  if (CFG.n) {
+    var eb = $(".eyebrow"), sp = document.createElement("span");
+    sp.textContent = CFG.n;
+    eb.insertBefore(sp, eb.firstChild);
+    document.title = CFG.n + " · " + document.title;
+  }
+
+  /* ---------- 시각 ---------- */
+  var EXAM = "2026-11-19";
+  var at = function (hm, day) { return new Date((day || EXAM) + "T" + hm + ":00+09:00").getTime(); };
+  var kst = function (t) { var d = new Date(t + 9 * 3600e3); return { y: d.getUTCFullYear(), mo: d.getUTCMonth(), d: d.getUTCDate(), h: d.getUTCHours(), mi: d.getUTCMinutes(), s: d.getUTCSeconds() }; };
+  var dday = function (t) { var p = kst(t); return Math.round((Date.UTC(2026, 10, 19) - Date.UTC(p.y, p.mo, p.d)) / 864e5); };
+  var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+  var fmtLeft = function (ms) {
+    var m = Math.max(0, Math.ceil(ms / 60000));
+    var d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60), mm = m % 60;
+    if (d) return d + "일 " + h + "시간";
+    if (h) return h + "시간" + (mm ? " " + mm + "분" : "");
+    return mm + "분";
+  };
+  var UNLOCK = at("16:37");
+
+  /* 기기 시계가 서버 시각과 2초 넘게 다르면 서버 시각에 맞춰 보여 준다 */
+  var skew = 0;
+  function now() { return Date.now() + skew; }
+  function checkClock() {
+    var t0 = Date.now();
+    fetch("?clock=" + t0, { method: "HEAD", cache: "no-store" }).then(function (r) {
+      var t1 = Date.now(), srv = Date.parse(r.headers.get("Date") || "");
+      if (!srv || t1 - t0 > 3000) return;
+      var diff = srv + 500 - (t0 + t1) / 2;
+      skew = Math.abs(diff) > 2000 ? Math.round(diff) : 0;
+      var note = $("#clock-note"), sec = Math.round(Math.abs(skew) / 1000);
+      note.hidden = !skew;
+      if (skew) note.textContent = "이 기기의 시계가 표준시보다 " + (sec >= 120 ? "약 " + Math.round(sec / 60) + "분 " : sec + "초 ") + (skew > 0 ? "느려서" : "빨라서") + " 서버 시각에 맞춰 보여 드려요. 기기 설정에서 날짜와 시간을 자동으로 맞추게 해 두세요.";
+    }).catch(function () {});
+  }
+
+  /* ---------- 탭 ---------- */
+  var TABS = ["wall", "night", "morning", "live", "after"];
+  var LETTERS = {
+    wall: "3년 동안 정말 애썼어요.<br>그 시간을 믿고, 끝까지 응원할게요.",
+    night: "가방 챙기고 시계 맞추면 준비 끝이에요.<br>오늘은 일찍 푹 자요.",
+    morning: "아침 든든히 먹고, 천천히 출발해요.<br>시험장 앞까지 마음으로 함께 갈게요.",
+    live: "시험장 밖에서도 마음은 늘 곁에 있어요.<br>기다리는 가족분들도 힘내세요.",
+    after: "끝까지 해낸 여러분이 정말 자랑스러워요.<br>오늘은 마음껏 쉬어요."
+  };
+  function defaultTab(t) {
+    if (t < at("18:00", "2026-11-18")) return "wall";
+    if (t < at("05:00")) return "night";
+    if (t < at("08:40")) return "morning";
+    if (t < UNLOCK) return "live";
+    return "after";
+  }
+  var current = null;      /* 지금 보이는 탭 */
+  var manual = false;      /* 보는 사람이 시각과 다른 탭을 직접 골랐는지 */
+  var shownDefault = null; /* 마지막으로 확인한 '시각에 맞는 탭' */
+  var hidDefault = null;   /* 화면이 꺼질 때의 '시각에 맞는 탭' */
+  function show(id) {
+    current = id;
+    TABS.forEach(function (k) {
+      $("#" + k).hidden = k !== id;
+      var b = $("#tab-" + k);
+      b.setAttribute("aria-selected", k === id ? "true" : "false");
+      b.tabIndex = k === id ? 0 : -1;
+    });
+    $("#hero").setAttribute("data-tab", id);
+    var body = id === "wall" && CFG.m ? esc(CFG.m).replace(/ ?\/ ?/g, "<br>") : LETTERS[id];
+    $("#letter").innerHTML = body + '<span class="sign">' + esc(CFG.w || "선생님이") + "</span>";
+  }
+  function pick(id) { show(id); manual = id !== defaultTab(now()); }
+  /* 경계 시각을 지나면 시각에 맞는 탭으로 넘긴다. 다른 탭을 직접 보고 있는 중이면 그대로 둔다. */
+  function syncTab() {
+    var d = defaultTab(now());
+    if (d === shownDefault) return;
+    shownDefault = d;
+    if (!manual || current === d) { manual = false; show(d); }
+  }
+  /* 주소 끝의 #탭이름은 열 때 한 번만 쓰고 지운다. 새로고침하면 다시 시각에 맞는 탭이 뜬다. */
+  function fromHash() {
+    var h = location.hash.slice(1);
+    if (TABS.indexOf(h) < 0) return false;
+    pick(h);
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    return true;
+  }
+  TABS.forEach(function (k, i) {
+    var b = $("#tab-" + k);
+    b.addEventListener("click", function () { pick(k); });
+    b.addEventListener("keydown", function (e) {
+      var n = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!n) return;
+      var next = TABS[(i + n + TABS.length) % TABS.length];
+      pick(next); $("#tab-" + next).focus();
+    });
+  });
+  window.addEventListener("hashchange", fromHash);
+  /* 화면을 껐다 켠 사이에 경계 시각이 지났으면 시각에 맞는 탭으로 돌아간다. */
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { hidDefault = defaultTab(now()); return; }
+    checkClock();
+    var d = defaultTab(now());
+    if (hidDefault && d !== hidDefault) { manual = false; shownDefault = d; show(d); }
+  });
+  shownDefault = defaultTab(now());
+  if (!fromHash()) show(shownDefault);
+
+  /* ---------- 머리말 ---------- */
+  function renderHead(t) {
+    var n = dday(t), big, sub;
+    if (n > 0) { big = "D-" + n; sub = n === 1 ? "<em>내일</em>이 수능이에요" : "수능까지 <em>" + n + "일</em> 남았어요"; }
+    else if (n === 0) { big = "D-DAY"; sub = t < at("17:45") ? "오늘 수능 보는 날이에요" : "오늘 정말 수고 많았어요"; }
+    else { big = "수고했어요"; sub = "2027학년도 수능이 끝났어요"; }
+    var d = $("#dday"); d.textContent = big; d.className = n >= 0 ? "dday" : "dday long";
+    $("#dday-sub").innerHTML = sub;
+  }
+
+  /* ---------- 체크리스트 ---------- */
+  var TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>';
+  var BAN = [
+    ["phone", "휴대폰", "꺼 두었어도 가져가면 안 돼요."],
+    ["watch", "스마트워치·스마트밴드", "통신·결제 기능이 있는 물건은 모두 안 돼요."],
+    ["glasses", "스마트안경", "평소 쓰는 일반 안경은 괜찮아요."],
+    ["ear", "이어폰·태블릿", "블루투스 같은 통신 기능이 있는 것은 안 돼요."],
+    ["dict", "전자사전·화면이 있는 텀블러", "LCD·LED 화면이 달린 물건은 모두 안 돼요."],
+    ["digital", "전자시계", "숫자가 화면에 뜨는 시계 대신 바늘 시계를 챙겨요."],
+    ["battery", "보조배터리 같은 충전식 물건", ""]
+  ];
+  var BRING = [
+    ["ticket", "수험표", "뒷면에 가채점표가 있어요."],
+    ["id", "사진이 붙은 신분증", "유효기간이 남은 주민등록증, 청소년증, 주민등록번호가 표시된 여권 등. 모바일 신분증은 안 돼요."],
+    ["clock", "아날로그 시계", "어젯밤에 맞춰 둔 바늘 시계"],
+    ["pen", "검은색 컴퓨터용 사인펜", "시험장에서도 나눠 주지만 평소 쓰던 것을 가져가도 돼요. 답안지에는 이 펜만 써요."],
+    ["pencil", "흑색 연필·지우개·흰색 수정테이프", "필요한 사람만"],
+    ["lunch", "점심 도시락과 물", "점심시간은 12:10부터, 3교시 입실은 13:00까지"],
+    ["coat", "따뜻한 겉옷", "입고 벗기 쉬운 옷이면 좋아요."],
+    ["mask", "마스크", "필요한 사람만, 감독관이 미리 확인해요."]
+  ];
+  function checklist(listSel, meterSel, items, key) {
+    var state = store.get(key, {});
+    var ul = $(listSel), meter = $(meterSel);
+    ul.innerHTML = items.map(function (it) {
+      var id = key + "-" + it[0];
+      return '<li><label class="check" for="' + id + '"><input type="checkbox" id="' + id + '" data-k="' + it[0] + '"' + (state[it[0]] ? " checked" : "") + '><span class="box" aria-hidden="true">' + TICK + '</span><span class="txt"><b>' + esc(it[1]) + "</b>" + (it[2] ? "<span>" + esc(it[2]) + "</span>" : "") + "</span></label></li>";
+    }).join("");
+    function upd() {
+      var done = items.filter(function (it) { return state[it[0]]; }).length;
+      meter.querySelector("i").style.width = (done / items.length * 100) + "%";
+      meter.querySelector("span").textContent = done + "/" + items.length + " 확인";
+      meter.classList.toggle("done", done === items.length);
+    }
+    ul.addEventListener("change", function (e) {
+      var k = e.target.getAttribute("data-k"); if (!k) return;
+      state[k] = e.target.checked; store.set(key, state); upd();
+    });
+    upd();
+  }
+  checklist("#ban-list", "#ban-meter", BAN, "ban");
+  checklist("#bring-list", "#bring-meter", BRING, "bring");
+
+  /* ---------- 시계 ---------- */
+  (function () {
+    var s = "";
+    for (var i = 0; i < 60; i++) {
+      var a = i * 6 * Math.PI / 180, big = i % 5 === 0;
+      if (big) {
+        s += '<circle cx="' + (100 + 76 * Math.sin(a)).toFixed(2) + '" cy="' + (100 - 76 * Math.cos(a)).toFixed(2) + '" r="' + (i % 15 === 0 ? 4 : 2.6) + '" fill="var(--ink)"/>';
+      } else {
+        s += '<circle cx="' + (100 + 78 * Math.sin(a)).toFixed(2) + '" cy="' + (100 - 78 * Math.cos(a)).toFixed(2) + '" r="1" fill="var(--muted)"/>';
+      }
+    }
+    $("#ticks").innerHTML = s;
+  })();
+  function renderClock(t) {
+    var p = kst(t);
+    $("#hand-h").setAttribute("transform", "rotate(" + ((p.h % 12 + p.mi / 60) * 30) + " 100 100)");
+    $("#hand-m").setAttribute("transform", "rotate(" + ((p.mi + p.s / 60) * 6) + " 100 100)");
+    $("#hand-s").setAttribute("transform", "rotate(" + (p.s * 6) + " 100 100)");
+    $("#digital").innerHTML = pad(p.h) + ":" + pad(p.mi) + ":" + pad(p.s) + "<small>한국 표준시</small>";
+  }
+
+  /* ---------- 4교시 카드 ---------- */
+  var SOC = ["생활과 윤리", "윤리와 사상", "한국지리", "세계지리", "동아시아사", "세계사", "경제", "정치와 법", "사회·문화", "물리학Ⅰ", "화학Ⅰ", "생명과학Ⅰ", "지구과학Ⅰ", "물리학Ⅱ", "화학Ⅱ", "생명과학Ⅱ", "지구과학Ⅱ"];
+  var VOC = ["농업 기초 기술", "공업 일반", "상업 경제", "수산·해운 산업 기초", "인간 발달"];
+  var mode = $("#mode"), sa = $("#sub-a"), sb = $("#sub-b");
+  var saved = store.get("four", { mode: "ss2", a: SOC[0], b: SOC[9] });
+  function fill(sel, list, val) {
+    sel.innerHTML = list.map(function (x) { return "<option" + (x === val ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("");
+  }
+  function setupPick() {
+    var m = mode.value;
+    $("#pick").hidden = m === "none";
+    $("#f-b").hidden = m !== "ss2";
+    if (m === "ss2") { $("#lab-a").textContent = "과목 1"; $("#lab-b").textContent = "과목 2"; fill(sa, SOC, SOC.indexOf(saved.a) >= 0 ? saved.a : SOC[0]); fill(sb, SOC, SOC.indexOf(saved.b) >= 0 ? saved.b : SOC[9]); }
+    if (m === "ss1") { $("#lab-a").textContent = "과목"; fill(sa, SOC, SOC.indexOf(saved.a) >= 0 ? saved.a : SOC[0]); }
+    if (m === "voc2") { $("#lab-a").textContent = "제2선택 과목 (제1선택은 성공적인 직업생활)"; fill(sa, VOC, VOC.indexOf(saved.a) >= 0 ? saved.a : VOC[0]); }
+    if (m === "voc1") { $("#lab-a").textContent = "과목"; fill(sa, VOC, VOC.indexOf(saved.a) >= 0 ? saved.a : VOC[0]); }
+  }
+  function row(t, s, quiet) { return '<li class="' + (quiet ? "quiet" : "") + '"><span class="t">' + t + '</span><span class="s">' + s + "</span></li>"; }
+  function renderCard() {
+    var m = mode.value, a = sa.value, b = sb.value, rows = [], tips = [], first, second;
+    saved = { mode: m, a: a, b: b }; store.set("four", saved);
+    rows.push(row("14:50–15:20", "<em>한국사</em><small>필수</small>"));
+    if (m === "none") {
+      rows.push(row("15:20 이후", "대기실로 이동해요", true));
+    } else {
+      rows.push(row("15:20–15:35", "문제지·답안지 회수와 배부", true));
+      if (m === "ss2" || m === "voc2") {
+        if (m === "ss2") {
+          if (a === b) { first = a; second = null; }
+          else if (SOC.indexOf(a) < SOC.indexOf(b)) { first = a; second = b; } else { first = b; second = a; }
+        } else { first = "성공적인 직업생활"; second = a; }
+        if (!second) {
+          rows.push(row("15:35–16:05", "서로 다른 과목 두 개를 골라 주세요", true));
+        } else {
+          rows.push(row("15:35–16:05", "<em>" + esc(first) + "</em><small>제1선택</small>"));
+          rows.push(row("16:05–16:07", "문제지 회수 (2분)", true));
+          rows.push(row("16:07–16:37", "<em>" + esc(second) + "</em><small>제2선택</small>"));
+        }
+      } else {
+        rows.push(row("15:35–16:05", "시험 없음 · 감독관 안내에 따라 기다려요", true));
+        rows.push(row("16:07–16:37", "<em>" + esc(a) + "</em><small>탐구</small>"));
+      }
+    }
+    $("#card4").innerHTML = '<div class="cap"><b>4교시 한국사·탐구</b><span class="num">14:50–16:37</span></div><ol>' + rows.join("") + "</ol>";
+    tips.push("<b>한국사는 꼭 봐야 해요.</b> 보지 않으면 수능 성적 전체가 무효가 돼요.");
+    if (m === "ss2") tips.push("탐구 과목은 응시원서에 과목 번호 순서대로 적기 때문에 그 순서로 정리했어요. <b>수험표와 시험실 책상 위 스티커에 적힌 순서와 같은지 확인하고, 다르면 수험표와 스티커를 따라요.</b>");
+    if (m === "voc2") tips.push("직업탐구 2과목은 성공적인 직업생활을 제1선택으로 먼저 봐요. 수험표와 시험실 책상 위 스티커의 순서도 확인해요.");
+    if (m === "ss2" || m === "voc2") tips.push("과목마다 그 시간의 문제지만 책상 위에 올려놓고 풀어요. 다른 과목 문제지를 보거나 두 과목 문제지를 함께 보면 부정행위예요.");
+    if (m === "ss2" || m === "voc2") tips.push("제2선택 시간에 이미 끝난 제1선택 과목의 답안을 쓰거나 고치면 부정행위로 시험이 무효가 돼요.");
+    if (m === "ss1" || m === "voc1") tips.push("고른 과목이 수험표와 시험실 책상 위 스티커에 적힌 과목과 같은지 확인해요.");
+    $("#warn4").innerHTML = tips.map(function (w) { return "<li><span>" + w + "</span></li>"; }).join("");
+  }
+  mode.value = ["ss2", "ss1", "voc2", "voc1", "none"].indexOf(saved.mode) >= 0 ? saved.mode : "ss2";
+  setupPick(); renderCard();
+  mode.addEventListener("change", function () { setupPick(); renderCard(); });
+  sa.addEventListener("change", renderCard); sb.addEventListener("change", renderCard);
+
+  /* ---------- 길찾기 ---------- */
+  var place = $("#place"), gk = $("#go-kakao"), gn = $("#go-naver");
+  function updMaps() {
+    var q = place.value.trim();
+    store.set("place", place.value);
+    [gk, gn].forEach(function (a) {
+      if (q) a.removeAttribute("aria-disabled");
+      else { a.setAttribute("aria-disabled", "true"); a.removeAttribute("href"); }
+    });
+    if (q) {
+      gk.href = "https://map.kakao.com/link/search/" + encodeURIComponent(q);
+      gn.href = "https://map.naver.com/p/search/" + encodeURIComponent(q);
+    }
+  }
+  place.value = store.get("place", "");
+  place.addEventListener("input", updMaps); updMaps();
+
+  /* ---------- 지금 몇 교시 ---------- */
+  var SCHED = [
+    ["08:10", "08:40", "입실 완료 · 1교시 준비", "gap", "08:10까지 입실"],
+    ["08:40", "10:00", "1교시 국어", "exam", "80분"],
+    ["10:00", "10:30", "쉬는 시간", "gap", "10:20까지 입실"],
+    ["10:30", "12:10", "2교시 수학", "exam", "100분"],
+    ["12:10", "13:10", "점심시간", "gap", "13:00까지 입실"],
+    ["13:10", "14:20", "3교시 영어", "exam", "70분 · 듣기평가는 13:10부터 25분 이내"],
+    ["14:20", "14:50", "쉬는 시간", "gap", "14:40까지 입실"],
+    ["14:50", "15:20", "4교시 한국사", "exam", "30분 · 필수"],
+    ["15:20", "15:35", "문제지·답안지 회수와 배부", "gap", "탐구를 안 보는 학생은 대기실로"],
+    ["15:35", "16:05", "4교시 탐구 제1선택", "exam", "30분 · 2과목 선택자"],
+    ["16:05", "16:07", "문제지 회수", "gap", "2분"],
+    ["16:07", "16:37", "4교시 탐구 제2선택", "exam", "30분 · 1과목 선택자도 이 시간에 봐요"],
+    ["16:37", "17:05", "쉬는 시간", "gap", "4교시까지 보는 학생은 여기서 끝 · 16:55까지 입실"],
+    ["17:05", "17:45", "5교시 제2외국어/한문", "exam", "40분"]
+  ].map(function (r) { return { s: at(r[0]), e: at(r[1]), hs: r[0], he: r[1], title: r[2], kind: r[3], note: r[4] }; });
+  var lastTT = "";
+  function renderLive(t) {
+    var cur = null;
+    for (var i = 0; i < SCHED.length; i++) if (t >= SCHED[i].s && t < SCHED[i].e) { cur = SCHED[i]; break; }
+    var html;
+    if (t < at("00:00")) {
+      html = '<div class="k">수능 당일</div><div class="title">11월 19일에 실시간으로 알려 드려요</div><p class="extra">이 화면을 열어 두면 지금 몇 교시인지, 끝나기까지 얼마나 남았는지 보여 드려요. 아래 시간표로 하루 흐름을 미리 볼 수 있어요.</p>';
+    } else if (t < SCHED[0].s) {
+      html = '<div class="k">오늘 · 입실 전</div><div class="title">입실 완료까지 ' + fmtLeft(SCHED[0].s - t) + '</div><div class="range">08:10까지 시험실 입실</div>';
+    } else if (cur) {
+      var pct = (t - cur.s) / (cur.e - cur.s) * 100;
+      html = '<div class="k">' + (cur.kind === "exam" ? "지금 시험 보는 중" : "지금") + '</div><div class="title">' + esc(cur.title) + '</div><div class="range">' + cur.hs + "–" + cur.he + '</div><div class="left">' + (cur.kind === "exam" ? "끝나기까지 " : "다음 일정까지 ") + fmtLeft(cur.e - t) + '</div><div class="bar" aria-hidden="true"><i style="width:' + pct.toFixed(1) + '%"></i></div>' + (t >= UNLOCK ? '<p class="extra">4교시까지 보는 학생은 시험이 끝났어요. ‘끝난 뒤’ 화면에 축하 편지가 열렸어요.</p>' : "");
+    } else if (t < at("00:00", "2026-11-20")) {
+      html = '<div class="k">오늘</div><div class="title">모든 시험이 끝났어요</div><p class="extra">‘끝난 뒤’ 화면에서 축하 편지와 할 일을 확인해요.</p>';
+    } else {
+      html = '<div class="k">2027학년도 수능</div><div class="title">시험이 끝났어요</div>';
+    }
+    $("#now").innerHTML = html;
+    var tt = SCHED.map(function (r) {
+      var cls = r.kind + (cur === r ? " cur" : (t >= r.e && dday(t) <= 0 ? " past" : ""));
+      return '<li class="' + cls + '"><span class="t">' + r.hs + "–" + r.he + '</span><span class="s"><b>' + esc(r.title) + "</b>" + (r.note ? "<span>" + esc(r.note) + "</span>" : "") + "</span></li>";
+    }).join("");
+    if (tt !== lastTT) { $("#tt").innerHTML = tt; lastTT = tt; }
+  }
+
+  /* ---------- 편지: 구글 시트 '공개용' 탭(반영에 체크한 편지만)을 읽어 옴 ---------- */
+  var before = [], afterM = [], loaded = false, failed = false, lastData = "";
+  function parseCSV(s) {
+    var rows = [], row = [], f = "", q = false;
+    for (var i = 0; i < s.length; i++) {
+      var c = s[i];
+      if (q) {
+        if (c === '"') { if (s[i + 1] === '"') { f += '"'; i++; } else q = false; }
+        else f += c;
+      } else if (c === '"') q = true;
+      else if (c === ",") { row.push(f); f = ""; }
+      else if (c === "\n") { row.push(f); rows.push(row); row = []; f = ""; }
+      else if (c !== "\r") f += c;
+    }
+    if (f || row.length) { row.push(f); rows.push(row); }
+    return rows;
+  }
+  var ENVELOPE = '<svg viewBox="0 0 120 84" aria-hidden="true"><rect x="4" y="10" width="112" height="70" rx="10" fill="var(--butter)" stroke="var(--accent)" stroke-width="3"/><path d="M8 16l52 36 52-36" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/><path d="M60 58c-6-4-13-8-13-14a6 6 0 0 1 13-3 6 6 0 0 1 13 3c0 6-7 10-13 14z" fill="var(--accent)"/></svg>';
+  var GROUPS = [["teacher", "선생님"], ["junior", "후배"], ["parent", "부모님"], ["other", "그 밖"]];
+  var GNAME = { teacher: "선생님", junior: "후배", parent: "부모님" };
+  var chosen = { wall: "all", after: "all" }; /* 화면별로 고른 보낸 사람 */
+  function cards(list, key) {
+    var present = GROUPS.filter(function (g) { return list.some(function (m) { return m.group === g[0]; }); });
+    if (chosen[key] !== "all" && !present.some(function (g) { return g[0] === chosen[key]; })) chosen[key] = "all";
+    var sel = chosen[key];
+    var chips = present.length < 2 ? "" : '<div class="chips" role="group" aria-label="보낸 사람으로 골라 보기">' + [["all", "전체"]].concat(present).map(function (g) {
+      var n = g[0] === "all" ? list.length : list.filter(function (m) { return m.group === g[0]; }).length;
+      return '<button type="button" class="chip" data-key="' + key + '" data-g="' + g[0] + '" aria-pressed="' + (sel === g[0]) + '">' + (g[0] === "all" ? "" : '<i class="g-' + g[0] + '"></i>') + g[1] + ' <span class="n">' + n + "</span></button>";
+    }).join("") + "</div>";
+    var shown = sel === "all" ? list : list.filter(function (m) { return m.group === sel; });
+    return chips + '<div class="wall">' + shown.map(function (m) {
+      return '<article class="msg g-' + m.group + '"><p>' + esc(m.text) + '</p><div class="from">' + (m.sample ? '<span class="who sample">예시</span>' : "") + (GNAME[m.group] ? '<span class="who">' + GNAME[m.group] + "</span>" : "") + esc(m.from || "응원하는 사람") + "</div></article>";
+    }).join("") + "</div>";
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target && e.target.closest ? e.target.closest(".chip") : null;
+    if (!b) return;
+    chosen[b.getAttribute("data-key")] = b.getAttribute("data-g");
+    if (b.getAttribute("data-key") === "wall") renderWall(); else { afterState = ""; renderAfter(now()); }
+  });
+  function emptyBox(title, body) {
+    return '<div class="empty">' + ENVELOPE + "<b>" + title + "</b><span>" + body + "</span></div>";
+  }
+  /* 예시 편지: 반영된 편지가 한 통도 없을 때만 보이고, 진짜 편지가 오면 자동으로 사라짐 */
+  var SAMPLES = [
+    { group: "teacher", from: "3반 담임", text: "아침마다 일찍 교실 불을 켜던 여러분을 기억해요. 그동안 해 온 만큼만 풀고 오면 충분해요." },
+    { group: "junior", from: "2학년 후배", text: "선배들 덕분에 학교생활이 든든했어요. 수능 잘 보고 오세요!" },
+    { group: "parent", from: "3학년 학부모", text: "늘 하던 대로 차분하게 다녀오렴. 저녁에 맛있는 거 먹자." },
+    { group: "other", from: "졸업생 선배", text: "막상 시험장에 앉으면 생각보다 괜찮아. 1교시 끝나면 긴장이 풀릴 거야." }
+  ].map(function (m) { m.sample = true; m.type = "before"; return m; });
+  function sampleWall(note) {
+    $("#wall-count").textContent = "";
+    $("#wall-list").innerHTML = '<p class="sample-note"><b>예시 편지예요.</b> ' + note + "</p>" + cards(SAMPLES, "wall");
+  }
+  function renderWall() {
+    if (!SHEET_CSV) {
+      sampleWall('config.js 에 우리 학교 시트 주소를 넣으면 진짜 편지가 이 자리에 붙어요. <a href="make.html">설정 만들기</a>');
+      return;
+    }
+    if (!loaded) {
+      $("#wall-list").innerHTML = failed
+        ? emptyBox("편지를 불러오지 못했어요", "인터넷 연결을 확인하고 새로고침해 주세요.")
+        : emptyBox("편지를 불러오는 중이에요", "잠깐만 기다려 주세요.");
+      return;
+    }
+    if (before.length) {
+      $("#wall-count").innerHTML = '지금까지 <span class="count">' + before.length + "</span>통이 도착했어요.";
+      $("#wall-list").innerHTML = cards(before, "wall");
+    } else {
+      sampleWall("선생님, 후배, 부모님이 쓴 편지가 도착하면 예시는 사라지고 진짜 편지가 붙어요.");
+    }
+  }
+  function load() {
+    if (!SHEET_CSV) return;
+    fetch(SHEET_CSV + "&t=" + Date.now())
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (txt) {
+        if (txt === lastData) return;
+        lastData = txt;
+        var list = parseCSV(txt).slice(1)
+          .filter(function (r) { return r[1] && r[1].trim(); })
+          .map(function (r) { var g = (r[3] || "").trim(); return { from: (r[0] || "").trim(), text: r[1].trim(), type: (r[2] || "").trim(), group: GNAME[g] ? g : "other" }; });
+        before = list.filter(function (m) { return m.type !== "after"; });
+        afterM = list.filter(function (m) { return m.type === "after"; });
+        loaded = true; failed = false;
+        renderWall();
+        afterState = "";
+        renderAfter(now());
+      })
+      .catch(function () { if (!loaded) { failed = true; renderWall(); } });
+  }
+  var afterState = "";
+  function renderAfter(t) {
+    var box = $("#after-msgs");
+    if (t < UNLOCK) {
+      afterState = "locked";
+      box.innerHTML = '<div class="lock">' + ENVELOPE + '<p>시험이 끝나면 열리는 편지' + (afterM.length ? " " + afterM.length + "통" : "") + '</p><div class="big">11월 19일 16:37에 열려요</div><p class="num">열리기까지 ' + fmtLeft(UNLOCK - t) + "</p></div>";
+      return;
+    }
+    if (afterState === "open") return;
+    afterState = "open";
+    if (!SHEET_CSV) { box.innerHTML = ""; return; }
+    box.innerHTML = afterM.length ? '<div style="margin-bottom:18px">' + cards(afterM, "after") + "</div>" : '<div style="margin-bottom:16px">' + emptyBox("축하 편지를 모으고 있어요", "선생님, 후배, 부모님의 편지가 도착하면 여기에 붙어요.") + "</div>";
+  }
+
+  /* ---------- 매초 갱신 ---------- */
+  function tick() {
+    var t = now();
+    syncTab(); renderHead(t); renderClock(t); renderLive(t); renderAfter(t);
+  }
+  renderWall();
+  tick();
+  setInterval(tick, 1000);
+  checkClock();
+  load();
+  setInterval(load, 120000);
+})();
+</script>
+</body>
+</html>

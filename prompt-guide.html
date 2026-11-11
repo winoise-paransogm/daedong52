@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>수능 응원 웹앱 프롬프트북</title>
+<meta name="description" content="색, 글꼴, 분위기, 탭 구성을 고르면 우리 학교만의 수능 응원 웹앱을 만드는 프롬프트가 완성되는 인터랙티브 프롬프트북입니다.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="수능 응원 웹앱 프롬프트북">
+<meta property="og:description" content="색, 글꼴, 분위기, 탭 구성을 고르면 우리 학교만의 수능 응원 웹앱을 만드는 프롬프트가 완성됩니다.">
+<meta property="og:image" content="https://dossamlab.github.io/suneung-cheer-kit/og.png">
+<meta name="theme-color" content="#FFF1E4">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Gowun+Batang:wght@700&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@400;700&family=Nanum+Gothic:wght@400;800&family=Do+Hyeon&family=Jua&family=Nanum+Myeongjo:wght@800&family=Gaegu:wght@400;700&family=Nanum+Pen+Script&family=Hi+Melody&family=Poor+Story&family=Gamja+Flower&display=swap">
+<style>
+/* Layout: 왼쪽은 고르는 칸, 오른쪽은 따라오는 휴대폰 미리보기. 그 아래 완성된 프롬프트가 단계별로 이어짐 */
+:root{--bg:#FFFBF7;--hero:#FFF1E4;--paper:#FFFDFA;--ink:#2E2621;--muted:#6E645C;--line:#FFEEDD;--line-strong:#FEDBC4;--accent:#E86E42;--accent-ink:#B3411B;--sel:#2E2621;color-scheme:light}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:16px;line-height:1.7;word-break:keep-all}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent-ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+header.top{background:var(--hero);border-bottom:1.5px dashed var(--line-strong)}
+header.top .wrap{padding-block:34px 28px}
+.eyebrow{margin:0;font-size:.84rem;font-weight:500;color:var(--muted)}
+.eyebrow::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:7px;vertical-align:1px}
+h1{font-size:clamp(1.7rem,5.6vw,2.4rem);font-weight:800;line-height:1.3;letter-spacing:-.02em;margin:10px 0 10px;text-wrap:balance}
+.lede{margin:0;color:#4F463F;max-width:66ch}
+.how{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;padding:0;margin:16px 0 0}
+.how li{background:#fff;border:1px solid var(--line-strong);border-radius:99px;padding:5px 14px;font-size:.88rem;font-weight:500}
+.how li b{color:var(--accent-ink);margin-right:4px}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start;padding-top:28px}
+.side{position:sticky;top:62px}
+@media (max-width:960px){.layout{grid-template-columns:1fr}.side{position:static;order:-1}}
+
+h2{font-size:1.45rem;font-weight:800;letter-spacing:-.015em;margin:0 0 6px}
+.sec-lede{color:var(--muted);margin:0 0 18px;font-size:.95rem}
+fieldset{border:0;margin:0 0 26px;padding:0;min-width:0}
+legend{font-weight:800;font-size:1.05rem;margin-bottom:4px;padding:0;display:flex;align-items:baseline;gap:8px}
+legend .n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:.78rem}
+.hint{font-size:.86rem;color:var(--muted);margin:0 0 10px}
+.opts{display:grid;gap:10px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:560px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.opt{position:relative;display:block;cursor:pointer;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;transition:border-color .15s,box-shadow .15s}
+.opt:hover{border-color:var(--line-strong)}
+.opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opt:has(input:checked){border-color:var(--sel);box-shadow:0 0 0 2px var(--sel)}
+.opt:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:3px}
+.opt .t{display:block;font-weight:700;font-size:.92rem}
+.opt .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.5}
+
+.sw{display:flex;height:42px;border-radius:9px;overflow:hidden;margin-bottom:8px;border:1px solid rgba(0,0,0,.06)}
+.sw i{flex:1}
+.sw i:first-child{flex:1.6}
+.fs{display:block;font-size:1.35rem;line-height:1.3;margin-bottom:2px;color:var(--ink)}
+.fs.sm{font-size:1rem}
+.pic{display:block;height:64px;border-radius:9px;margin-bottom:8px;background:var(--hero);position:relative;overflow:hidden}
+.pic svg{position:absolute;inset:0;width:100%;height:100%}
+.custom{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px;font-size:.86rem;color:var(--muted)}
+.custom label{display:inline-flex;align-items:center;gap:6px}
+.custom input[type=color]{width:34px;height:28px;border:1px solid var(--line-strong);border-radius:6px;padding:0;background:#fff}
+.tabsel{display:grid;gap:10px}
+.tabbox{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px}
+.tabbox:has(> label input:checked){border-color:var(--line-strong)}
+.tabbox > label{display:flex;align-items:center;gap:8px;font-weight:800;cursor:pointer}
+.tabbox .items{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tabbox:not(:has(> label input:checked)) .items{opacity:.35;pointer-events:none}
+.chip{position:relative;display:inline-flex;align-items:center;gap:6px;font-size:.84rem;padding:4px 10px;border-radius:99px;border:1px solid var(--line-strong);background:#fff;cursor:pointer}
+.chip:has(input:checked){background:var(--sel);border-color:var(--sel);color:#fff}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.field{display:grid;gap:5px;margin-bottom:12px}
+.field label{font-size:.86rem;font-weight:700}
+input[type=text]{font:inherit;font-size:.95rem;color:var(--ink);background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:10px 13px;width:100%}
+input[type=text]:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(232,110,66,.2)}
+
+.phone{width:100%;max-width:340px;margin:0 auto;border:10px solid #2E2621;border-radius:34px;overflow:hidden;background:var(--p-bg);box-shadow:0 18px 40px -18px rgba(0,0,0,.35)}
+.phone .scr{height:560px;overflow:hidden;font-family:var(--p-body);color:var(--p-ink)}
+.ph-head{position:relative;background:var(--p-head);padding:18px 16px 14px;border-bottom:1.5px dashed color-mix(in srgb,var(--p-primary) 35%,transparent)}
+.ph-head .deco{position:absolute;top:10px;right:10px;width:86px;height:64px}
+.ph-school{font-size:.68rem;color:color-mix(in srgb,var(--p-ink) 65%,transparent);margin:0;max-width:62%}
+.ph-dday{font-family:var(--p-headfont);font-weight:var(--p-headw);font-size:2.6rem;line-height:1;margin:6px 0 4px}
+.ph-sub{font-weight:700;font-size:.9rem;margin:0}
+.ph-sub em{font-style:normal;color:var(--p-primary)}
+.ph-msg{font-family:var(--p-hand);font-size:1.02rem;line-height:1.45;margin:10px 0 0;padding-top:8px;border-top:1px dashed color-mix(in srgb,var(--p-primary) 30%,transparent)}
+.ph-msg .s{display:block;text-align:right;font-size:.85em;color:var(--p-primary)}
+.ph-tabs{display:flex;gap:4px;padding:8px 10px;border-bottom:1px solid color-mix(in srgb,var(--p-primary) 15%,transparent)}
+.ph-tabs span{flex:1;min-width:0;text-align:center;font-size:.62rem;padding:6px 0;border-radius:var(--p-r);background:#fff;border:1px solid color-mix(in srgb,var(--p-primary) 18%,transparent);white-space:nowrap;overflow:hidden}
+.ph-tabs span:first-child{background:var(--p-primary);color:var(--p-on);border-color:var(--p-primary);font-weight:700}
+.ph-body{padding:12px 14px}
+.ph-h2{font-family:var(--p-headfont);font-weight:var(--p-headw);font-size:1rem;margin:0 0 8px}
+.ph-btn{display:block;text-align:center;background:var(--p-primary);color:var(--p-on);font-weight:700;font-size:.8rem;padding:9px;border-radius:var(--p-r);margin-bottom:16px}
+.ph-card{position:relative;isolation:isolate;background:var(--p-card);padding:16px 14px 10px;margin:0 2px 14px;font-family:var(--p-hand);font-size:.98rem;line-height:1.45;border-radius:var(--p-r);box-shadow:0 6px 16px -8px rgba(0,0,0,.25)}
+.ph-card .f{display:block;text-align:right;font-size:.85em;margin-top:6px}
+.ph-card.postit{transform:rotate(-1deg)}
+.ph-card.postit::before{content:"";position:absolute;top:-8px;left:50%;width:54px;height:16px;transform:translateX(-50%) rotate(-3deg);background:color-mix(in srgb,var(--p-primary) 40%,transparent);border-radius:2px}
+.ph-card.envelope{background:#fff;border:1px solid color-mix(in srgb,var(--p-primary) 25%,transparent);margin-top:22px}
+.ph-card.envelope::before{content:"";position:absolute;left:-4px;right:-4px;top:-16px;height:30px;background:var(--p-card);clip-path:polygon(0 100%,50% 0,100% 100%);z-index:-1}
+.ph-card.postcard{background:#fff;border:1px solid color-mix(in srgb,var(--p-primary) 30%,transparent);background-image:repeating-linear-gradient(transparent 0 23px,color-mix(in srgb,var(--p-primary) 18%,transparent) 23px 24px);background-position:0 6px}
+.ph-card.bubble{border-radius:calc(var(--p-r) + 8px)}
+.ph-card.bubble::after{content:"";position:absolute;left:22px;bottom:-10px;width:18px;height:12px;background:var(--p-card);clip-path:polygon(0 0,100% 0,20% 100%)}
+.ph-card.noink{font-family:var(--p-body);font-size:.84rem}
+.pv-cap{text-align:center;font-size:.8rem;color:var(--muted);margin:10px 0 0}
+
+.prompts{padding-top:12px}
+.stage{margin:0 0 30px}
+.stage > h3{font-size:1.15rem;font-weight:800;margin:0 0 4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.stage > h3 .tag{font-size:.72rem;font-weight:800;padding:2px 9px;border-radius:6px;background:var(--line);color:var(--accent-ink)}
+.stage > p{margin:0 0 10px;color:#4F463F;font-size:.93rem;max-width:72ch}
+.say{background:#fff;border:1px solid var(--line-strong);border-radius:14px;margin:10px 0 14px;overflow:hidden}
+.say .cap{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px 8px 14px;background:var(--hero);border-bottom:1px solid var(--line-strong);font-size:.84rem;font-weight:700;color:var(--accent-ink)}
+.say pre{margin:0;padding:14px 16px;white-space:pre-wrap;word-break:break-word;font:500 .9rem/1.7 "Noto Sans KR","Malgun Gothic",sans-serif;color:var(--ink)}
+.copy{font:inherit;font-size:.8rem;font-weight:700;border:1px solid var(--line-strong);background:#fff;color:var(--accent-ink);border-radius:8px;padding:4px 10px;cursor:pointer;white-space:nowrap}
+.copy.done{background:var(--accent);border-color:var(--accent);color:#fff}
+.box{border-radius:14px;padding:12px 14px;margin:10px 0 14px;font-size:.9rem}
+.box b{display:block;margin-bottom:2px}
+.tip{background:#F1F8F3;border:1px solid #CFE8D7}
+.tip b{color:#1F6B44}
+details{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:10px 0 14px}
+details summary{cursor:pointer;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--hero)}
+td:first-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.btn{font:inherit;font-size:.86rem;font-weight:700;padding:8px 14px;border-radius:10px;border:1px solid var(--line-strong);background:#fff;color:var(--ink);cursor:pointer}
+.foot{text-align:center;font-size:.84rem;color:var(--muted);margin:40px 0 0;padding:24px 0 56px;border-top:1px solid var(--line)}
+.foot .hand{display:block;font-family:"Gaegu",cursive;font-weight:700;font-size:1.7rem;color:var(--accent-ink);margin-bottom:8px}
+/* 순서도 */
+.flow{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.fl-step{position:relative;padding:0 18px 0 0;min-width:0}
+.fl-step::after{content:"";position:absolute;top:25px;left:62px;right:16px;height:2px;background:repeating-linear-gradient(90deg,var(--accent) 0 7px,transparent 7px 13px);background-size:13px 2px;opacity:.55;animation:dash 1.1s linear infinite}
+.fl-step::before{content:"";position:absolute;top:20px;right:8px;border:6px solid transparent;border-left:8px solid var(--accent);opacity:.7}
+.fl-step:last-child::after,.fl-step:last-child::before{display:none}
+.fl-ico{position:relative;z-index:1;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid var(--line-strong);color:var(--accent-ink);transition:border-color .25s,background .25s,color .25s,transform .25s}
+.fl-ico svg{width:24px;height:24px}
+.fl-step.cur .fl-ico{border-color:var(--accent);background:var(--accent);color:#fff;transform:scale(1.06)}
+.fl-step.cur .fl-ico::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid var(--accent);opacity:0;animation:ring 1.8s ease-out infinite}
+.fl-body{margin-top:8px;min-width:0}
+.fl-body > b{display:block;font-size:1rem;font-weight:800}
+.fl-where{display:block;font-size:.78rem;color:var(--muted);margin-bottom:6px}
+.fl-items{display:grid;gap:3px}
+.fl-item{display:flex;align-items:center;gap:7px;font-size:.82rem;line-height:1.35;color:var(--ink);text-decoration:none;padding:3px 6px 3px 3px;border-radius:8px;transition:background .2s,box-shadow .2s}
+.fl-item:hover{background:#fff}
+.fl-item .no{flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line-strong);background:#fff;font-size:.7rem;font-weight:800;color:var(--accent-ink);transition:background .3s,color .3s,border-color .3s}
+.fl-item.done .no{background:var(--accent);border-color:var(--accent);color:#fff;animation:pop .35s ease}
+.fl-item.cur{background:#fff;box-shadow:inset 0 0 0 1.5px var(--accent)}
+.fl-prog{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin:18px 0 0;font-size:.84rem;color:var(--muted)}
+.fl-prog b{color:var(--accent-ink)}
+.fl-bar{flex:1;min-width:120px;max-width:320px;height:6px;border-radius:99px;background:#fff;border:1px solid var(--line-strong);overflow:hidden}
+.fl-bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.flow.intro .fl-step{animation:rise .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * .13s)}
+@media (max-width:720px){
+  .flow{grid-template-columns:1fr}
+  .fl-step{display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:14px;padding:0 0 18px}
+  .fl-step::after{top:58px;bottom:4px;left:25px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--accent) 0 7px,transparent 7px 13px);background-size:2px 13px;animation-name:dashv}
+  .fl-step::before{top:auto;bottom:-4px;right:auto;left:20px;border:6px solid transparent;border-top:8px solid var(--accent)}
+  .fl-body{margin-top:2px}
+}
+/* 따라오는 진행 막대 */
+.mini{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--bg);box-shadow:0 4px 12px -8px rgba(0,0,0,.2);border-bottom:1px solid var(--line-strong);transform:translateY(-110%);transition:transform .3s ease}
+.mini.show{transform:none}
+.mini .wrap{display:flex;align-items:center;gap:10px;height:46px;font-size:.84rem}
+.mini-dots{display:flex;gap:6px;flex:none}
+.mini-dots i{width:9px;height:9px;border-radius:50%;background:var(--line-strong);transition:background .3s,transform .3s}
+.mini-dots i.on{background:var(--accent)}
+.mini-dots i.cur{transform:scale(1.45)}
+.mini-t{flex:1;min-width:0;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink);text-decoration:none}
+.mini-c{flex:none;color:var(--muted)}
+.mini-bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+/* 움직임 */
+.opt:has(input:checked){animation:pop .28s ease}
+.chip:has(input:checked){animation:pop .28s ease}
+.phone.bump{animation:bump .35s ease}
+.ph-card.postit{animation:sway 6s ease-in-out infinite}
+#pv-deco.stamp{animation:stamp .6s cubic-bezier(.2,.8,.2,1) both}
+.say.changed{animation:glow 1.5s ease-out}
+.say.changed pre{animation:flash 1.5s ease-out}
+.say.was .cap > span::before{content:"✓";display:inline-grid;place-items:center;width:18px;height:18px;margin-right:6px;border-radius:50%;background:var(--accent);color:#fff;font-size:.7rem}
+.copy.done{animation:pop .3s ease}
+.stage{scroll-margin-top:64px}
+.js .stage{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.js .stage.in{opacity:1;transform:none}
+@keyframes dash{to{background-position:13px 0}}
+@keyframes dashv{to{background-position:0 13px}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes ring{0%{opacity:.6;transform:scale(.9)}100%{opacity:0;transform:scale(1.3)}}
+@keyframes pop{0%{transform:scale(.95)}60%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes bump{0%,100%{transform:scale(1)}40%{transform:scale(.985)}}
+@keyframes sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(.6deg)}}
+@keyframes stamp{0%{opacity:0;transform:scale(1.7) rotate(-14deg)}70%{opacity:1;transform:scale(.95) rotate(2deg)}100%{opacity:1;transform:none}}
+@keyframes glow{0%{box-shadow:0 0 0 3px var(--accent)}100%{box-shadow:0 0 0 0 rgba(232,110,66,0)}}
+@keyframes flash{0%{background:#FFE6D8}100%{background:#fff}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .stage{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="mini" id="mini" aria-hidden="true"><div class="wrap"><span class="mini-dots" id="mini-dots"><i></i><i></i><i></i><i></i></span><a class="mini-t" id="mini-t" href="#flow" tabindex="-1"></a><span class="mini-c" id="mini-c"></span></div><i class="mini-bar" id="mini-bar"></i></div>
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">바이브코딩 처음 해 보는 선생님을 위한 프롬프트북</p>
+    <h1>골라서 완성하는 수능 응원 웹앱 프롬프트</h1>
+    <p class="lede">색, 글꼴, 분위기, 탭 구성을 고르면 우리 학교만의 수능 응원 웹앱을 만드는 프롬프트가 완성됩니다. 고른 값은 미리보기에 바로 보이고, 아래 프롬프트에 자동으로 들어갑니다. 고른 내용은 이 기기에만 저장됩니다. 아래 순서도의 단계를 누르면 그 프롬프트로 바로 갑니다.</p>
+    <ol class="flow intro" id="flow" aria-label="진행 순서"></ol>
+    <p class="fl-prog"><span>복사한 프롬프트 <b id="fl-got">0</b> / <span id="fl-total">0</span></span><span class="fl-bar"><i id="fl-bar"></i></span></p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+    <form id="f" onsubmit="return false">
+      <h2>고르기</h2>
+      <p class="sec-lede">처음 정해 두는 값이 많을수록 시안이 한 번에 가까워집니다. 잘 모르겠으면 처음 골라 둔 값 그대로 두어도 됩니다.</p>
+
+      <fieldset>
+        <legend><span class="n">1</span>색 조합</legend>
+        <p class="hint">견본은 주 색, 바탕, 머리 바탕, 편지지, 글자 색 순서입니다.</p>
+        <div class="opts g3" id="pal"></div>
+        <div class="custom" id="custom-row" hidden>
+          <label>주 색 <input type="color" id="c-primary"></label>
+          <label>바탕 <input type="color" id="c-bg"></label>
+          <label>글자 <input type="color" id="c-ink"></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">2</span>분위기</legend>
+        <div class="opts g3" id="mood"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">3</span>제목 글꼴</legend>
+        <div class="opts g3" id="headfont"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">4</span>본문 글꼴</legend>
+        <div class="opts g4" id="bodyfont"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">5</span>편지와 응원 문구의 손글씨</legend>
+        <div class="opts g3" id="hand"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">6</span>편지 카드 모양</legend>
+        <div class="opts g4" id="card"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">7</span>모서리</legend>
+        <div class="opts g3" id="radius"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">8</span>말투</legend>
+        <div class="opts g3" id="tone"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">9</span>탭과 담을 것</legend>
+        <p class="hint">응원 탭은 꼭 들어갑니다. 나머지 탭과 요소는 넣고 싶은 것만 고릅니다.</p>
+        <div class="tabsel" id="tabs"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">10</span>주로 볼 화면</legend>
+        <div class="opts g3" id="device"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">11</span>쓸 코딩 도구</legend>
+        <div class="opts g4" id="tool"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="n">12</span>우리 학교 문구</legend>
+        <div class="field"><label for="school">학교 이름(맨 위에 작게)</label><input type="text" id="school" maxlength="30" placeholder="예: ○○고등학교 (비워 두어도 됩니다)"></div>
+        <div class="field"><label for="message">맨 위 응원 문구(/ 를 넣으면 줄이 바뀜)</label><input type="text" id="message" maxlength="60"></div>
+        <div class="field"><label for="sign">서명</label><input type="text" id="sign" maxlength="15"></div>
+        <div class="field"><label for="share">카톡 미리보기 제목</label><input type="text" id="share" maxlength="30"></div>
+      </fieldset>
+      <div class="bar"><button type="button" class="btn" id="reset">처음 값으로 되돌리기</button></div>
+    </form>
+
+    <aside class="side" aria-label="미리보기">
+      <div class="phone" id="phone">
+        <div class="scr">
+          <div class="ph-head">
+            <svg class="deco" id="pv-deco" viewBox="0 0 120 70" aria-hidden="true"></svg>
+            <p class="ph-school" id="pv-school"></p>
+            <p class="ph-dday">D-9</p>
+            <p class="ph-sub" id="pv-sub"></p>
+            <p class="ph-msg" id="pv-msg"></p>
+          </div>
+          <div class="ph-tabs" id="pv-tabs"></div>
+          <div class="ph-body">
+            <p class="ph-h2" id="pv-h2"></p>
+            <span class="ph-btn" id="pv-btn"></span>
+            <div class="ph-card" id="pv-card"><span id="pv-letter"></span><span class="f">3반 담임</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="pv-cap">미리보기는 분위기를 보는 견본입니다. 실제 화면은 스티치가 그립니다.</p>
+    </aside>
+  </div>
+
+  <section class="prompts" id="out" aria-live="polite">
+    <h2>완성된 프롬프트</h2>
+    <p class="sec-lede">위에서 고른 값이 들어간 프롬프트입니다. 순서대로 복사해서 붙여 넣으세요. 한 번에 한 프롬프트만 넣고, 결과를 확인한 뒤 다음으로 넘어갑니다. 화면을 먼저 그리고 코드로 넘기는 순서는 독키피디아 <a href="https://dokipedia.netlify.app/sketch.html" target="_blank" rel="noopener">스케치 대백과</a>를 따랐습니다.</p>
+    <div id="stages"></div>
+  </section>
+
+  <p class="foot"><span class="hand">여러분의 내일을 늘 응원해요</span>수능 시간표와 유의사항은 한국교육과정평가원 「2027학년도 대학수학능력시험 시행세부계획 공고」(2026. 7. 1.)와 교육부 수험생 유의사항을 따랐습니다.<br><a href="./">완성 예시 페이지</a> · <a href="guide.html">템플릿으로 바로 만들기(사용설명서)</a> · <a href="https://github.com/dossamlab/suneung-cheer-kit" target="_blank" rel="noopener">템플릿 저장소</a></p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  document.documentElement.classList.add("js");
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+
+  /* ---------- 선택지 ---------- */
+  var PAL = {
+    terracotta: { name: "노을 테라코타", primary: "#E86E42", bg: "#FFF8F2", head: "#FFF1E4", card: "#FFF7D6", ink: "#2E2621" },
+    navy: { name: "새벽 남색", primary: "#3D5AA8", bg: "#F6F8FD", head: "#E6EDFA", card: "#FFFBEA", ink: "#1E2433" },
+    sprout: { name: "봄 새싹", primary: "#3F9467", bg: "#F6FBF7", head: "#E3F2E8", card: "#FFFBE6", ink: "#1F2A23" },
+    lavender: { name: "라벤더 편지", primary: "#7B5CC4", bg: "#FAF8FE", head: "#EEE8FB", card: "#FFF6E8", ink: "#272138" },
+    tangerine: { name: "귤빛 아침", primary: "#E39A1B", bg: "#FFFBF1", head: "#FFF0CC", card: "#FFFFFF", ink: "#2F2716" },
+    sea: { name: "바다 청록", primary: "#17867F", bg: "#F3FAF9", head: "#DDF1EE", card: "#FFF8E7", ink: "#15302D" },
+    blossom: { name: "벚꽃 분홍", primary: "#D9567A", bg: "#FFF8FA", head: "#FDE6EC", card: "#FFFDF2", ink: "#33212A" },
+    hanji: { name: "한지와 낙관", primary: "#B8432F", bg: "#F8F4EC", head: "#EFE6D6", card: "#FFFDF7", ink: "#2B2622" },
+    custom: { name: "직접 고르기" }
+  };
+  var MOOD = {
+    letter: { t: "편지지와 우표", d: "평평한 편지지, 우체국 소인", p: "평평한 편지지 바탕에 점선 테두리. 머리 오른쪽 위에 \"11.19 수능 응원\"이라고 찍힌 우체국 소인 도장을 옅은 주 색 선으로 그려 줘" },
+    board: { t: "포스트잇 게시판", d: "교실 게시판, 압정과 테이프", p: "교실 게시판처럼 편지를 압정과 테이프로 붙인 느낌. 머리에는 작은 압정 두세 개 장식" },
+    omr: { t: "수험표·OMR", d: "칸 선, 타이밍 마크", p: "수험표와 OMR 답안지에서 가져온 느낌. 머리 위쪽에 짧은 검은 막대가 줄지어 있는 타이밍 마크, 체크 칸은 OMR 마킹 동그라미" },
+    clean: { t: "깔끔한 카드", d: "흰 카드, 장식 거의 없음", p: "흰 카드와 얇은 테두리만 쓰는 깔끔한 화면. 장식은 거의 없이" },
+    sketch: { t: "손그림 스케치", d: "연필 선, 작은 낙서", p: "연필로 그린 듯한 테두리와 작은 손그림 별·하트 낙서" },
+    sky: { t: "새벽 하늘", d: "작은 별, 초승달", p: "새벽 하늘 느낌. 머리 오른쪽 위에 작은 초승달과 별 몇 개를 단순한 선으로. 그라데이션은 쓰지 않고 평평한 색으로" }
+  };
+  var HEAD = {
+    noto: { t: "Noto Sans KR", css: '"Noto Sans KR"', w: 800, d: "또렷한 고딕" },
+    batang: { t: "Gowun Batang", css: '"Gowun Batang"', w: 700, d: "단정한 바탕체" },
+    dohyeon: { t: "Do Hyeon", css: '"Do Hyeon"', w: 400, d: "굵고 반듯한 제목체" },
+    jua: { t: "Jua", css: '"Jua"', w: 400, d: "동글동글 귀여운" },
+    myeongjo: { t: "Nanum Myeongjo", css: '"Nanum Myeongjo"', w: 800, d: "편지 같은 명조" }
+  };
+  var BODY = {
+    noto: { t: "Noto Sans KR", css: '"Noto Sans KR"' },
+    dodum: { t: "Gowun Dodum", css: '"Gowun Dodum"' },
+    plex: { t: "IBM Plex Sans KR", css: '"IBM Plex Sans KR"' },
+    nanum: { t: "Nanum Gothic", css: '"Nanum Gothic"' }
+  };
+  var HAND = {
+    gaegu: { t: "Gaegu", css: '"Gaegu"', d: "또박또박 손글씨" },
+    pen: { t: "Nanum Pen Script", css: '"Nanum Pen Script"', d: "흘려 쓴 펜글씨" },
+    melody: { t: "Hi Melody", css: '"Hi Melody"', d: "둥근 손글씨" },
+    poor: { t: "Poor Story", css: '"Poor Story"', d: "차분한 손글씨" },
+    gamja: { t: "Gamja Flower", css: '"Gamja Flower"', d: "통통한 손글씨" },
+    none: { t: "손글씨 안 씀", css: null, d: "본문 글꼴 그대로" }
+  };
+  var CARD = {
+    postit: { t: "포스트잇", p: "포스트잇처럼 생긴 편지 카드. 위쪽 가운데에 마스킹테이프, 카드마다 아주 살짝 기울어짐" },
+    envelope: { t: "편지 봉투", p: "편지 봉투 위에 꺼내 놓은 편지지 모양의 카드" },
+    postcard: { t: "엽서", p: "가로줄이 옅게 그어진 엽서 모양의 카드" },
+    bubble: { t: "말풍선", p: "말풍선 모양의 편지 카드. 꼬리는 아래 왼쪽" }
+  };
+  var RADIUS = { sharp: { t: "각지게", v: 4, p: "거의 각지게(4px)" }, soft: { t: "살짝 둥글게", v: 12, p: "살짝 둥글게(12px)" }, round: { t: "많이 둥글게", v: 22, p: "많이 둥글게(20px 이상)" } };
+  var TONE = {
+    haeyo: { t: "다정한 해요체", ex: "편지가 도착했어요", p: "다정한 해요체", sub: "수능까지 <em>9일</em> 남았어요", btn: "편지 남기기", done: "수고했어요", msg: "3년 동안 정말 애썼어요. / 그 시간을 믿고, 끝까지 응원할게요.", desc: "읽어 보세요", desc2: "담았어요", letter: "그동안 해 온 만큼만 풀고 오면 충분해요. 늘 응원해요." },
+    hamnida: { t: "정중한 합니다체", ex: "편지가 도착했습니다", p: "정중한 합니다체", sub: "수능까지 <em>9일</em> 남았습니다", btn: "편지 남기기", done: "수고했습니다", msg: "3년 동안 정말 애썼습니다. / 그 시간을 믿고, 끝까지 응원하겠습니다.", desc: "읽어 보십시오", desc2: "담았습니다", letter: "그동안 해 온 만큼만 풀고 오면 충분합니다. 늘 응원합니다." },
+    banmal: { t: "친근한 반말", ex: "편지 왔어!", p: "선배나 친구가 말하듯 친근한 반말", sub: "수능까지 <em>9일</em> 남았어", btn: "편지 쓰기", done: "수고했어", msg: "3년 동안 정말 애썼어. / 그 시간을 믿고, 끝까지 응원할게.", desc: "읽어 봐", desc2: "담았어", letter: "해 온 만큼만 풀고 와도 충분해. 늘 응원해!" }
+  };
+  var TABS = [
+    { id: "wall", name: "응원", fixed: true, items: [["wall", "편지 벽", true], ["filter", "보낸 사람별 골라 보기"], ["sample", "편지가 없을 때 예시 편지"]] },
+    { id: "night", name: "전날 밤", items: [["ban", "가방에서 빼 둘 물건 체크리스트"], ["clock", "아날로그 시계 맞추기"], ["period4", "4교시 순서 카드"], ["compare", "쉬는 시간엔 되지만 시험 중엔 안 되는 것"]] },
+    { id: "morning", name: "아침", items: [["bring", "챙길 것 체크리스트"], ["maps", "고사장 길찾기"], ["lost", "수험표를 잃어버렸을 때 안내"], ["changes", "올해 달라진 점"]] },
+    { id: "live", name: "시험 중", items: [["now", "지금 몇 교시와 남은 시간"], ["timeline", "오늘의 시간표"]] },
+    { id: "after", name: "끝난 뒤", items: [["locked", "4교시가 끝나면 열리는 축하 편지"], ["todo", "시험 끝나고 할 일 일정"]] }
+  ];
+  var DEVICE = { mobile: { t: "휴대폰 먼저", d: "카톡으로 받은 링크를 주로 엶" }, both: { t: "휴대폰과 PC 둘 다", d: "넓은 화면은 두 단으로" }, pc: { t: "PC 먼저", d: "교실 TV나 컴퓨터로 띄움" } };
+  var TOOL = { claude: { t: "클로드 코드" }, antigravity: { t: "안티그래비티" }, gemini: { t: "제미나이 CLI" }, cursor: { t: "커서" } };
+
+  var DEFAULT = {
+    pal: "terracotta", custom: { primary: "#E86E42", bg: "#FFF8F2", ink: "#2E2621" }, mood: "letter", headfont: "noto", bodyfont: "noto", hand: "gaegu", card: "postit", radius: "soft", tone: "haeyo", device: "both", tool: "claude",
+    tabs: { wall: true, night: true, morning: true, live: true, after: true },
+    items: { wall: true, filter: true, sample: true, ban: true, clock: true, period4: true, compare: true, bring: true, maps: true, lost: true, changes: true, now: true, timeline: true, locked: true, todo: true },
+    school: "", message: "", sign: "", share: "수능 날, 곁에서 응원할게요"
+  };
+  var KEY = "promptbook:v1";
+  function fresh() { return JSON.parse(JSON.stringify(DEFAULT)); }
+  var S = null;
+  try { S = JSON.parse(localStorage.getItem(KEY)); } catch (e) { S = null; }
+  if (!S || typeof S !== "object") S = fresh();
+  Object.keys(DEFAULT).forEach(function (k) { if (S[k] === undefined || S[k] === null) S[k] = JSON.parse(JSON.stringify(DEFAULT[k])); });
+  [["pal", PAL], ["mood", MOOD], ["headfont", HEAD], ["bodyfont", BODY], ["hand", HAND], ["card", CARD], ["radius", RADIUS], ["tone", TONE], ["device", DEVICE], ["tool", TOOL]].forEach(function (p) { if (!p[1][S[p[0]]]) S[p[0]] = DEFAULT[p[0]]; });
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+  /* ---------- 색 계산 ---------- */
+  function hex2rgb(h) { h = String(h).replace("#", ""); return [0, 2, 4].map(function (i) { return parseInt(h.substr(i, 2), 16) || 0; }); }
+  function rgb2hex(a) { return "#" + a.map(function (v) { return ("0" + Math.round(v).toString(16)).slice(-2); }).join("").toUpperCase(); }
+  function mix(a, b, t) { var x = hex2rgb(a), y = hex2rgb(b); return rgb2hex(x.map(function (v, i) { return v + (y[i] - v) * t; })); }
+  function lum(h) { var c = hex2rgb(h).map(function (v) { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; }
+  function contrast(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
+  function palette() {
+    var p = S.pal === "custom"
+      ? { name: "직접 고른 색", primary: S.custom.primary.toUpperCase(), bg: S.custom.bg.toUpperCase(), ink: S.custom.ink.toUpperCase() }
+      : JSON.parse(JSON.stringify(PAL[S.pal]));
+    if (!p.head) p.head = mix(p.bg, p.primary, .1);
+    if (!p.card) p.card = mix("#FFFFFF", p.primary, .08);
+    p.on = contrast(p.primary, "#FFFFFF") >= 3 ? "#FFFFFF" : p.ink;
+    return p;
+  }
+
+  /* ---------- 선택지 그리기 ---------- */
+  function radios(box, name, map, render) {
+    $(box).innerHTML = Object.keys(map).map(function (k) {
+      return '<label class="opt"><input type="radio" name="' + name + '" value="' + k + '"' + (S[name] === k ? " checked" : "") + ">" + render(k, map[k]) + "</label>";
+    }).join("");
+  }
+  var DECO = {
+    letter: '<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 30c6-5 11 5 17 0s11 5 17 0"/><path d="M4 42c6-5 11 5 17 0s11 5 17 0"/><circle cx="82" cy="36" r="28"/><circle cx="82" cy="36" r="22" stroke-width="1.6" stroke-dasharray="1 5"/></g><text x="82" y="37" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor" font-family="Noto Sans KR">11.19</text><text x="82" y="49" text-anchor="middle" font-size="7" font-weight="700" fill="currentColor" font-family="Noto Sans KR">수능 응원</text>',
+    board: '<g fill="currentColor"><circle cx="40" cy="24" r="7"/><circle cx="74" cy="16" r="7"/><circle cx="102" cy="30" r="7"/></g><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M40 31v10M74 23v10M102 37v10"/></g>',
+    omr: '<g fill="currentColor">' + [0, 1, 2, 3, 4, 5, 6].map(function (i) { return '<rect x="' + (14 + i * 14) + '" y="12" width="9" height="5" rx="1"/>'; }).join("") + '</g><g fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="34" cy="44" rx="10" ry="6"/><ellipse cx="60" cy="44" rx="10" ry="6"/><ellipse cx="86" cy="44" rx="10" ry="6" fill="currentColor"/></g>',
+    clean: "",
+    sketch: '<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M30 14l4 9 10 1-8 6 3 10-9-6-9 6 3-10-8-6 10-1z"/><path d="M86 54c-6-4-14-8-14-15a7 7 0 0 1 14-3 7 7 0 0 1 14 3c0 7-8 11-14 15z"/><path d="M56 22c4 3 8 3 12 0"/></g>',
+    sky: '<g fill="currentColor"><path d="M92 12a20 20 0 1 0 14 34 16 16 0 0 1-14-34z"/><circle cx="30" cy="18" r="2.5"/><circle cx="50" cy="38" r="2"/><circle cx="22" cy="52" r="2"/><circle cx="64" cy="12" r="1.6"/></g>'
+  };
+  radios("#pal", "pal", PAL, function (k, p) {
+    var sw = k === "custom" ? '<span class="sw" style="background:repeating-linear-gradient(45deg,#fff 0 6px,#eee 6px 12px)"></span>'
+      : '<span class="sw"><i style="background:' + p.primary + '"></i><i style="background:' + p.bg + '"></i><i style="background:' + p.head + '"></i><i style="background:' + p.card + '"></i><i style="background:' + p.ink + '"></i></span>';
+    return sw + '<span class="t">' + p.name + "</span>";
+  });
+  radios("#mood", "mood", MOOD, function (k, m) { return '<span class="pic" style="color:#E2967A"><svg viewBox="0 0 120 70" aria-hidden="true">' + DECO[k] + '</svg></span><span class="t">' + m.t + '</span><span class="d">' + m.d + "</span>"; });
+  radios("#headfont", "headfont", HEAD, function (k, f) { return '<span class="fs" style="font-family:' + f.css + ";font-weight:" + f.w + '">D-9 수능</span><span class="t">' + f.t + '</span><span class="d">' + f.d + "</span>"; });
+  radios("#bodyfont", "bodyfont", BODY, function (k, f) { return '<span class="fs sm" style="font-family:' + f.css + '">챙길 것을 확인해요</span><span class="t">' + f.t + "</span>"; });
+  radios("#hand", "hand", HAND, function (k, f) { return '<span class="fs" style="font-family:' + (f.css || '"Noto Sans KR"') + (f.css ? "" : ";font-size:1rem") + '">늘 응원할게요</span><span class="t">' + f.t + '</span><span class="d">' + f.d + "</span>"; });
+  var CARDPIC = {
+    postit: '<rect x="30" y="18" width="60" height="44" rx="4" fill="#FFF3B8" transform="rotate(-3 60 40)"/><rect x="48" y="12" width="24" height="9" fill="#F2B79C" transform="rotate(-4 60 16)"/>',
+    envelope: '<path d="M26 34l34-20 34 20v30H26z" fill="#F6E3D2"/><rect x="34" y="22" width="52" height="40" fill="#fff" stroke="#E7CDB8"/>',
+    postcard: '<rect x="24" y="16" width="72" height="46" fill="#fff" stroke="#E7CDB8"/><path d="M30 30h60M30 40h60M30 50h60" stroke="#F1DACB"/>',
+    bubble: '<rect x="24" y="12" width="72" height="40" rx="14" fill="#FFF3B8"/><path d="M36 50l-4 12 14-12z" fill="#FFF3B8"/>'
+  };
+  radios("#card", "card", CARD, function (k, c) { return '<span class="pic" style="background:#FFF8F2"><svg viewBox="0 0 120 70" aria-hidden="true">' + CARDPIC[k] + '</svg></span><span class="t">' + c.t + "</span>"; });
+  radios("#radius", "radius", RADIUS, function (k, r) { return '<span class="pic" style="background:#FFF8F2"><svg viewBox="0 0 120 70" aria-hidden="true"><rect x="30" y="16" width="60" height="38" rx="' + Math.min(r.v, 18) + '" fill="#fff" stroke="#E86E42" stroke-width="2"/></svg></span><span class="t">' + r.t + "</span>"; });
+  radios("#tone", "tone", TONE, function (k, t) { return '<span class="t">' + t.t + '</span><span class="d">예: ' + t.ex + "</span>"; });
+  radios("#device", "device", DEVICE, function (k, d) { return '<span class="t">' + d.t + '</span><span class="d">' + d.d + "</span>"; });
+  radios("#tool", "tool", TOOL, function (k, d) { return '<span class="t">' + d.t + "</span>"; });
+  $("#tabs").innerHTML = TABS.map(function (t) {
+    return '<div class="tabbox"><label><input type="checkbox" data-tab="' + t.id + '"' + (t.fixed || S.tabs[t.id] ? " checked" : "") + (t.fixed ? " disabled" : "") + "> " + t.name + (t.fixed ? ' <span style="font-weight:400;font-size:.8rem;color:var(--muted)">(필수)</span>' : "") + '</label><div class="items">' +
+      t.items.map(function (it) { return '<label class="chip"><input type="checkbox" data-item="' + it[0] + '"' + (it[2] || S.items[it[0]] ? " checked" : "") + (it[2] ? " disabled" : "") + ">" + it[1] + "</label>"; }).join("") + "</div></div>";
+  }).join("");
+  ["school", "message", "sign", "share"].forEach(function (k) { $("#" + k).value = S[k]; });
+  $("#sign").placeholder = "비워 두면: 선생님이";
+  ["primary", "bg", "ink"].forEach(function (k) { $("#c-" + k).value = S.custom[k]; });
+
+  $("#f").addEventListener("change", function (e) {
+    var el = e.target;
+    if (el.type === "radio") S[el.name] = el.value;
+    else if (el.dataset.tab) S.tabs[el.dataset.tab] = el.checked;
+    else if (el.dataset.item) S.items[el.dataset.item] = el.checked;
+    else if (el.type === "color") S.custom[el.id.slice(2)] = el.value;
+    update(true);
+  });
+  $("#f").addEventListener("input", function (e) {
+    var el = e.target;
+    if (el.type === "text") { S[el.id] = el.value.replace(/[<>]/g, ""); update(true); }
+    else if (el.type === "color") { S.custom[el.id.slice(2)] = el.value; update(true); }
+  });
+  $("#reset").addEventListener("click", function () { S = fresh(); save(); try { localStorage.removeItem("promptbook:copied:v1"); } catch (e) {} location.reload(); });
+
+  /* ---------- 프롬프트 만들기 ---------- */
+  function msg() { return (S.message || TONE[S.tone].msg).trim(); }
+  function sign() { return (S.sign || "선생님이").trim(); }
+  function on(id) { return !!S.items[id]; }
+  function tabOn(id) { return id === "wall" || !!S.tabs[id]; }
+  function tabNames() { return TABS.filter(function (t) { return tabOn(t.id); }).map(function (t) { return t.name; }); }
+  function handName() { return S.hand === "none" ? null : HAND[S.hand].t; }
+  var SCHEDULE = "입실 08:10까지(1교시를 보지 않아도 같음) / 1교시 국어 08:40–10:00 / 2교시 수학 10:30–12:10 / 점심 12:10–13:10 / 3교시 영어 13:10–14:20(듣기평가는 13:10부터 25분 이내) / 4교시 한국사 14:50–15:20, 문제지·답안지 회수와 배부 15:20–15:35, 탐구 제1선택 15:35–16:05, 문제지 회수 16:05–16:07, 탐구 제2선택 16:07–16:37(1과목 선택자는 이 시간) / 5교시 제2외국어·한문 17:05–17:45. 2~5교시는 시작 10분 전까지 입실.";
+
+  function stages() {
+    var p = palette(), out = [], tone = TONE[S.tone], hand = handName(), tabs = tabNames(), tool = TOOL[S.tool].t;
+    var colors = "주 색 " + p.primary + ", 바탕 " + p.bg + ", 머리 바탕 " + p.head + ", 편지 카드 " + p.card + ", 글자 " + p.ink + ". 주 색 단추의 글자는 " + p.on + ".";
+    var fonts = "제목은 " + HEAD[S.headfont].t + ", 본문은 " + BODY[S.bodyfont].t + " 16px" + (hand ? ", 편지와 응원 문구는 손글씨 " + hand + "." : ". 손글씨 글꼴은 쓰지 마.");
+    var dev = S.device === "pc" ? "주로 PC 화면(1280px)으로 띄워. 휴대폰에서도 깨지지 않게." : S.device === "both" ? "휴대폰으로 많이 열고 PC로도 열어. 휴대폰 화면부터 그려줘." : "카톡으로 받은 링크를 휴대폰으로 열어. 휴대폰 화면으로 그려줘.";
+    var subPlain = tone.sub.replace(/<\/?em>/g, "");
+
+    out.push({ tag: "스티치", title: "첫 화면 뽑기",
+      note: "스티치(stitch.withgoogle.com)에 개인 구글 계정으로 들어가 새 프로젝트를 열고 붙여 넣습니다. 학교 계정은 막혀 있을 수 있습니다. 같은 문장을 넣어도 결과가 매번 다르니, 마음에 드는 안이 나오면 다음 단계의 「확정하기」를 바로 넣습니다.",
+      texts: [{ cap: "첫 화면", text:
+        "고3 수험생에게 선물하는 수능 응원 웹앱의 첫 화면을 만들어줘.\n" +
+        "- 대상: 고3 학생과 기다리는 학부모, 편지를 쓰는 선생님과 후배. " + dev + "\n" +
+        "- 분위기: " + MOOD[S.mood].p + ".\n" +
+        "- 맨 위: " + (S.school ? "작은 글씨로 \"" + S.school + "\", " : "") + "\"D-9\", \"" + subPlain + "\", 그 아래 " + (hand ? "손글씨 " : "") + "응원 문구 \"" + msg().replace(/ ?\/ ?/g, " ") + "\"와 서명 \"" + sign() + "\".\n" +
+        "- 그 아래 탭 " + tabs.length + "개: " + tabs.join(", ") + ". 지금은 \"응원\" 탭이 열린 상태.\n" +
+        "- 본문: \"선생님, 후배, 부모님이 보낸 편지\" 제목, 넓은 \"" + tone.btn + "\" 단추, " + CARD[S.card].p + " 세 장" + (on("filter") ? ", 카드 위에 \"전체·선생님·후배·부모님·그 밖\" 골라 보기 단추" : "") + ".\n" +
+        "- 색: " + colors + "\n" +
+        "- 글꼴: " + fonts + "\n" +
+        "- 모서리: " + RADIUS[S.radius].p + ".\n" +
+        "- 말투: " + tone.p + ", 단추 글자는 짧게.\n" +
+        "- 이름이나 학번 입력칸은 넣지 마. 그라데이션과 빛 번짐 효과는 쓰지 마." }] });
+
+    var more = [];
+    if (tabOn("night")) {
+      var n = [];
+      if (on("ban")) n.push("\"가방에서 빼 둘 물건\" 체크리스트(체크 칸과 확인한 개수 표시)");
+      if (on("compare")) n.push("\"쉬는 시간엔 되지만 시험 중엔 안 되는 것\" 두 칸 비교 상자");
+      if (on("clock")) n.push("아날로그 시계와 디지털 시각을 함께 보여 주는 \"시계 맞추기\" 카드");
+      if (on("period4")) n.push("탐구 과목을 고르면 4교시 순서가 나오는 \"4교시 순서 카드\"(입장권 모양)");
+      if (n.length) more.push({ cap: "전날 밤", text: "\"전날 밤\" 탭 화면을 만들어줘. 위쪽 머리와 탭은 그대로 두고 본문만 바꿔.\n- " + n.join("\n- ") });
+    }
+    if (tabOn("morning")) {
+      var m = [];
+      if (on("bring")) m.push("\"챙길 것\" 체크리스트");
+      if (on("maps")) m.push("고사장 이름 입력칸과 \"카카오맵 열기\", \"네이버 지도 열기\" 단추");
+      if (on("lost")) m.push("\"수험표를 잃어버렸다면\" 안내 상자(눈에 띄는 옅은 색)");
+      if (on("changes")) m.push("\"올해 달라진 점\" 카드");
+      if (m.length) more.push({ cap: "아침", text: "\"아침\" 탭 화면을 만들어줘. 위쪽 머리와 탭은 그대로 두고 본문만 바꿔.\n- " + m.join("\n- ") });
+    }
+    if (tabOn("live")) {
+      var l = [];
+      if (on("now")) l.push("맨 위에 \"지금 몇 교시\"를 크게 보여 주는 카드와 끝나기까지 남은 시간 막대");
+      if (on("timeline")) l.push("\"오늘의 시간표\" 세로 타임라인. 지금 교시는 주 색으로 표시");
+      if (l.length) more.push({ cap: "시험 중", text: "\"시험 중\" 탭 화면을 만들어줘. 기다리는 가족이 보는 화면이야. 위쪽 머리와 탭은 그대로 둬.\n- " + l.join("\n- ") });
+    }
+    if (tabOn("after")) {
+      var a = [];
+      if (on("locked")) a.push("시험이 끝나야 열리는 축하 편지. 열리기 전에는 봉인된 편지 봉투와 \"11월 19일 16:37에 열려요\"");
+      if (on("todo")) a.push("\"시험 끝나고 할 일\" 목록(날짜와 할 일)");
+      if (a.length) more.push({ cap: "끝난 뒤", text: "\"끝난 뒤\" 탭 화면을 만들어줘. 위쪽 머리와 탭은 그대로 둬.\n- " + a.join("\n- ") });
+    }
+    out.push({ tag: "스티치", title: "확정하고 화면 늘리기",
+      note: "첫 화면이 마음에 들면 「확정하기」를 먼저 넣고, 아래 화면을 하나씩 넣습니다. 화면이 " + (1 + more.length) + "장이 되면 멈춥니다. 시안에 들어간 날짜·시각·규정 글자는 믿지 말고 모양만 봅니다.",
+      texts: [{ cap: "확정하기", text: "이 안으로 고정해. 다음 화면은 이 안의 색과 글꼴과 여백 그대로 만들어줘." }].concat(more) });
+
+    out.push({ tag: "스티치", title: "고칠 곳만 고치기", note: "전체를 다시 뽑지 말고, 먼저 지적만 받은 뒤 한 번에 한 곳만 고칩니다. 화면의 요소를 눌러 그 부분만 다시 만들 수도 있습니다.",
+      texts: [
+        { cap: "지적만 받기", text: "지금 화면들에서 AI가 만든 티가 나는 곳과, 화면끼리 색·글꼴·여백이 어긋난 곳을 목록으로만 알려줘. 고치지는 마." },
+        { cap: "한 곳만 고치기", text: "방금 목록에서 1번만 고쳐줘. 다른 곳은 그대로 둬." }
+      ] });
+
+    var dont = [
+      "그라데이션, 빛 번짐, 반짝이 효과를 쓰지 않는다. 머리 바탕은 평평한 " + p.head + " 한 가지.",
+      "제목 앞에 이모지를 넣지 않는다. 아이콘은 같은 굵기의 선 아이콘만 쓴다.",
+      "어두운 화면(다크 모드)을 따로 만들지 않는다. 어떤 설정에서 열어도 밝은 색 하나로 보인다.",
+      "이름, 학번, 전화번호 입력칸을 만들지 않는다.",
+      "시험 날짜, 시각, 반입 물품, 규정을 지어서 넣지 않는다. 공고에 있는 문장만 쓴다.",
+      "모서리 둥글기와 그림자를 카드마다 다르게 쓰지 않는다. 모서리는 " + RADIUS[S.radius].p + "로 통일한다.",
+      "말투는 " + tone.p + "로 통일하고 섞지 않는다."
+    ];
+    if (!hand) dont.push("손글씨 글꼴을 쓰지 않는다.");
+    out.push({ tag: "스티치", title: "규칙 한 장(DESIGN.md)", note: "화면이 다 모이면 반복되는 규칙만 뽑습니다. 뽑아 준 DESIGN.md 끝에 「하지 말 것」을 직접 붙여 넣고 내려받습니다. 이 목록이 없으면 코딩 도구가 평균적인 값을 채워 넣습니다.",
+      texts: [
+        { cap: "규칙 뽑기", text: "지금 화면들에서 반복되는 규칙만 뽑아서 한 장으로 정리해줘. 한 화면에만 쓰인 값은 빼고." },
+        { cap: "DESIGN.md 파일 끝에 붙여 넣을 내용(AI에게 보내는 말 아님)", text: "## 하지 말 것\n- " + dont.join("\n- ") }
+      ] });
+
+    var layout = S.device === "pc" ? "PC 폭 1280px을 먼저 맞추고, 휴대폰 폭 390px에서도 가로로 넘치지 않게 해." : S.device === "both" ? "휴대폰 폭 390px을 먼저 맞추고, 900px 이상에서는 머리를 좌우로 나누고 카드를 두 단으로 놓아줘." : "휴대폰 폭 390px에 맞춰. PC에서는 가운데 한 줄로 보여 줘.";
+    out.push({ tag: tool, title: "코딩 도구로 넘기기", note: "빈 폴더를 만들고 " + tool + "를 그 폴더에서 엽니다. 스티치 MCP를 연결했다면 시안을 바로 읽고, 아니면 스티치에서 화면 코드와 DESIGN.md를 내려받아 그 폴더에 넣습니다. 스티치가 준 코드는 대조용으로만 씁니다.",
+      texts: [
+        { cap: "뼈대 만들기", text: "스티치 시안 " + (1 + more.length) + "개 화면과 DESIGN.md를 보고, index.html 한 파일로 된 웹페이지를 만들어줘.\n" +
+          "- HTML, CSS, 자바스크립트만 쓰고 프레임워크나 빌드 도구는 쓰지 마.\n" +
+          "- 탭 " + tabs.length + "개(" + tabs.join(", ") + ")는 한 페이지 안에서 바뀌게 해.\n" +
+          "- " + layout + "\n" +
+          "- 색: " + colors + "\n- 글꼴: " + fonts + " 글꼴은 구글 폰트에서 불러와.\n" +
+          "- 시험 날짜·시각·규정 글자는 아직 넣지 말고 \"(공고 확인)\"으로 비워 둬.\n" +
+          "- DESIGN.md의 \"하지 말 것\"을 지켜. 다르게 만들 이유가 생기면 만들지 말고 먼저 물어봐." },
+        { cap: "만든 뒤 첫 지시", text: "지금 만든 화면과 시안이 다른 곳을 목록으로 알려줘. 고치지는 마." }
+      ] });
+
+    var f = [], range = [];
+    if (tabOn("night")) range.push("11월 18일 18시부터 19일 5시: 전날 밤");
+    if (tabOn("morning")) range.push("19일 5시부터 8시 40분: 아침");
+    if (tabOn("live")) range.push("19일 8시 40분부터 16시 37분: 시험 중");
+    if (tabOn("after")) range.push("19일 16시 37분 이후: 끝난 뒤");
+    if (range.length) f.push({ cap: "탭이 시각에 맞춰 바뀌게", text: "페이지를 열면 한국 시간 기준으로 맞는 탭이 먼저 열리게 해줘.\n- " + ["그 전에는 응원"].concat(range).join("\n- ") + "\n- 목록에 없는 시간에는 응원 탭을 열어.\n- 열어 둔 채로 경계 시각이 지나면 자동으로 넘어가되, 다른 탭을 직접 보고 있으면 넘기지 마.\n- 기기의 시간대 설정과 상관없이 한국 시간으로 계산해. 탭을 눌러도 주소에 탭 이름이 남지 않게 해.\n다 만들면 날짜를 바꿔 가며 확인할 수 있는 시험 방법도 알려줘." });
+    f.push({ cap: "D-day", text: "맨 위 D-day는 수능 시험일인 2026년 11월 19일을 기준으로, 한국 시간 날짜로 계산해. 수능 당일은 \"D-DAY\", 지난 뒤에는 \"" + tone.done + "\"로 바꿔줘." });
+    if (tabOn("night") && on("clock")) f.push({ cap: "시계 맞추기", text: "\"전날 밤\" 탭의 아날로그 시계는 한국 표준시를 초 단위로 보여 줘. 기기 시계가 서버 시각과 2초 넘게 다르면 서버 시각에 맞춰 보여 주고 그 사실을 안내해줘." });
+    var keep = [];
+    if (tabOn("night") && on("ban")) keep.push("가방 체크리스트");
+    if (tabOn("morning") && on("bring")) keep.push("챙길 것 체크리스트");
+    if (tabOn("night") && on("period4")) keep.push("고른 탐구 과목");
+    if (tabOn("morning") && on("maps")) keep.push("입력한 고사장 이름");
+    if (keep.length) f.push({ cap: "이 기기에만 저장", text: keep.join(", ") + "은 이 기기의 로컬스토리지에만 저장해. 서버로 보내지 마. 저장이 막힌 환경(시크릿 모드 등)에서도 페이지는 정상으로 열리게 해." });
+    if (tabOn("night") && on("period4")) f.push({ cap: "4교시 순서 카드", text: "탐구 영역(사회·과학탐구 2과목/1과목, 직업탐구 2과목/1과목, 탐구 안 봄)과 과목을 고르면 4교시 순서 카드를 보여 줘.\n- 시간은 이대로 써: 한국사 14:50–15:20, 문제지·답안지 회수와 배부 15:20–15:35, 제1선택 15:35–16:05, 문제지 회수 16:05–16:07, 제2선택 16:07–16:37. 1과목 선택자는 16:07–16:37에 봐.\n- 사회·과학탐구 2과목은 공고에 나온 과목 순서대로 제1·제2선택을 정리하고, \"수험표와 책상 스티커의 순서를 따르라\"는 안내를 붙여.\n- 직업탐구 2과목은 \"성공적인 직업생활\"이 제1선택이야." });
+    if (tabOn("morning") && on("maps")) f.push({ cap: "고사장 길찾기", text: "고사장 이름을 입력하면 \"카카오맵 열기\"는 https://map.kakao.com/link/search/ 뒤에, \"네이버 지도 열기\"는 https://map.naver.com/p/search/ 뒤에 입력한 이름을 붙여 새 창으로 열어줘. 지도 API 키는 쓰지 마." });
+    if (tabOn("live") && (on("now") || on("timeline"))) f.push({ cap: "지금 몇 교시", text: "\"시험 중\" 탭에서 " + (on("now") ? "지금 교시와 끝나기까지 남은 시간, 막대를 1초마다 갱신하고, " : "") + (on("timeline") ? "시간표에서 지금 교시를 표시해줘. " : "") + "시간은 아래를 그대로 써.\n" + SCHEDULE });
+    if (S.device === "both") f.push({ cap: "PC 화면", text: "900px 이상 넓은 화면을 다듬어줘. 머리는 왼쪽에 D-day, 오른쪽에 응원 문구. 편지는 3열, 체크리스트 카드는 2단" + (tabOn("live") ? ", 시험 중 탭은 왼쪽에 \"지금 몇 교시\" 카드(스크롤해도 따라오게), 오른쪽에 시간표" : "") + ". 휴대폰 화면은 바꾸지 마." });
+    if (S.device === "pc") f.push({ cap: "휴대폰 화면 확인", text: "휴대폰 폭 390px에서 모든 탭을 확인하고, 가로로 넘치거나 글자가 잘리는 곳을 목록으로 알려줘. 고치지는 마." });
+    out.push({ tag: tool, title: "기능 하나씩 붙이기", note: "한 번에 하나만 넣고, 고친 뒤에는 휴대폰 폭에서 직접 눌러 봅니다.", texts: f });
+
+    out.push({ tag: tool, title: "수능 정보 채우고 대조하기", facts: true,
+      note: "한국교육과정평가원 누리집(kice.re.kr, suneung.re.kr)에서 「2027학년도 대학수학능력시험 시행세부계획 공고」를, 교육부 누리집에서 수험생 유의사항 보도자료를 내려받아 작업 폴더에 넣습니다. 스티치와 AI는 그럴듯한 시험 정보를 지어 넣습니다. 우리가 만들 때도 수험표 재발급 시각과 영어 시험 시간이 틀리게 들어갔습니다.",
+      texts: [
+        { cap: "비워 둔 자리 채우기", text: "작업 폴더에 넣어 둔 「2027학년도 대학수학능력시험 시행세부계획 공고」와 교육부 수험생 유의사항만 근거로, 페이지에서 \"(공고 확인)\"으로 비워 둔 자리를 채워줘.\n- 두 자료에 없는 내용은 채우지 말고 비워 둔 채 목록으로 알려줘.\n- 채운 문장마다 근거가 된 원문 문장을 표로 같이 보여 줘." },
+        { cap: "전체 대조하기", text: "작업 폴더에 넣어 둔 「2027학년도 대학수학능력시험 시행세부계획 공고」와 교육부 수험생 유의사항을 기준으로, 페이지에 들어간 날짜·시각·분 수·과목명·물품·규정 문구를 한 줄씩 대조해줘.\n- 다른 곳, 근거 없이 단정한 곳, 수험생이 잘못 이해할 수 있는 곳을 표로만 알려줘.\n- 칸은 \"페이지 문구 / 근거 문장 / 고칠 문장\"으로.\n- 고치지는 마." }
+      ] });
+
+    var lt = "구글 시트 「공개용」 탭을 웹에 게시한 CSV 주소를 2분마다 읽어서 응원 벽에 붙여줘. 주소는 index.html 맨 위 설정 값 한 줄로 둬서 나중에 쉽게 바꿀 수 있게 해.\n" +
+      "- 열은 from(보낸 사람), text(편지), type(before/after), group(teacher/junior/parent/other)이야.\n" +
+      (tabOn("after") && on("locked") ? "- type이 after인 편지는 11월 19일 16:37 전까지 \"끝난 뒤\" 탭에서 봉투로 잠가 두고, 그 뒤에 열어줘.\n" : "- type이 after인 편지는 11월 19일 16:37 이후에만 응원 벽에 보여 줘.\n") +
+      "- 쉼표, 따옴표, 줄바꿈이 섞인 CSV도 제대로 읽어.\n- 편지 글은 반드시 글자로만 넣고 HTML로 해석하지 마.\n" +
+      "- 편지 카드는 " + CARD[S.card].p + ". group에 따라 편지지 색을 조금씩 다르게 해.\n" +
+      (on("filter") ? "- 위에 \"전체·선생님·후배·부모님·그 밖\" 골라 보기 단추를 둬. 편지가 없는 분류의 단추는 숨겨.\n" : "") +
+      (on("sample") ? "- 반영된 편지가 하나도 없으면 \"예시 편지\"라고 표시한 예시 편지를 보여 주고, 진짜 편지가 오면 예시는 사라지게 해." : "- 편지가 하나도 없으면 \"편지가 모이는 중\"이라는 빈 상태 화면을 보여 줘.");
+    out.push({ tag: tool, title: "편지 연결하기", guide: true, note: "설문과 응답 시트는 이미 만들어 둔 템플릿을 씁니다. 시트 사본을 만들고, 메뉴 「수능 응원 → 설문 만들기」로 설문을 만든 뒤, 「공개용」 탭만 웹에 게시합니다. 전체 문서를 게시하면 체크하지 않은 편지까지 공개되니 「공개용」 탭 하나만 고릅니다.",
+      texts: [{ cap: "편지 벽 연결", text: lt }] });
+
+    var title = (S.share || "수능 날, 곁에서 응원할게요").trim(), extra = [];
+    if ((tabOn("night") && on("ban")) || (tabOn("morning") && on("bring"))) extra.push("준비물");
+    if (tabOn("live") && (on("now") || on("timeline"))) extra.push("시간표");
+    out.push({ tag: tool, title: "아이콘, 카톡 미리보기, 배포", note: "GitHub Pages로 무료 배포합니다. 배포한 뒤 휴대폰과 PC에서 모든 탭을 눌러 보고, 카톡으로 링크를 보내 미리보기를 확인합니다. 옛 미리보기가 나오면 주소 끝에 ?v=2를 붙여 보냅니다. 내 컴퓨터에서 파일로 열면 편지를 못 불러오니, 편지는 배포한 주소에서 확인합니다.",
+      texts: [
+        { cap: "아이콘과 미리보기", text: "편지 봉투 모양의 파비콘(svg, 192px png, 아이폰용 180px png)과 카톡 공유 미리보기를 만들어줘.\n- 미리보기 그림은 1200×630, 페이지와 같은 색(" + p.primary + ", " + p.head + ")과 글꼴로.\n- 제목: " + title + "\n- 설명: " + (S.school ? S.school + " " : "") + "선생님과 후배, 부모님이 쓴 응원 편지를 " + tone.desc + "." + (extra.length ? " 수능 날 " + extra.join("과 ") + "도 함께 " + tone.desc2 + "." : "") },
+        { cap: "배포", text: "이 폴더를 GitHub 새 공개 저장소에 올리고 GitHub Pages를 켜려고 해. 올라갈 파일 목록을 먼저 보여 주고, 개인정보나 키가 섞였는지 확인해줘. 그다음 내가 따라 할 순서를 단계별로 알려줘." }
+      ] });
+    return out;
+  }
+
+  /* ---------- 그리기 ---------- */
+  var CKEY = "promptbook:copied:v1", copied = {};
+  try { copied = JSON.parse(localStorage.getItem(CKEY)) || {}; } catch (e) { copied = {}; }
+  function saveCopied() { try { localStorage.setItem(CKEY, JSON.stringify(copied)); } catch (e) {} }
+  var CUR = [], prevTexts = null, revealed = {}, lastMood = null;
+  function kOf(s, t) { return s.title + "|" + t.cap; }
+  function phOf(i, n) { return i < 4 ? "stitch" : i === n - 1 ? "ship" : "code"; }
+  function sayBox(k, cap, text, changed) {
+    var was = !!copied[k];
+    return '<div class="say' + (changed ? " changed" : "") + (was ? " was" : "") + '" data-k="' + esc(k) + '"><div class="cap"><span>' + esc(cap) + '</span><button type="button" class="copy">' + (was ? "다시 복사" : "문장 복사") + "</button></div><pre>" + esc(text) + "</pre></div>";
+  }
+  var FACTS = '<details><summary>사실 자료: 2027학년도 수능 시간표(공고에서 옮김)</summary><table><tr><th>시각</th><th>내용</th></tr>' +
+    [["08:10까지", "시험실 입실(1교시를 보지 않는 학생도 같음)"], ["08:40–10:00", "1교시 국어(80분)"], ["10:30–12:10", "2교시 수학(100분)"], ["13:10–14:20", "3교시 영어(70분), 듣기평가는 13:10부터 25분 이내"], ["14:50–15:20", "4교시 한국사(30분, 필수)"], ["15:20–15:35", "문제지·답안지 회수와 배부"], ["15:35–16:05", "4교시 탐구 제1선택"], ["16:05–16:07", "문제지 회수"], ["16:07–16:37", "4교시 탐구 제2선택(1과목 선택자도 이 시간)"], ["17:05–17:45", "5교시 제2외국어/한문(40분)"]]
+      .map(function (r) { return "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td></tr>"; }).join("") + '</table><p class="hint" style="margin:8px 0 0">시험일은 2026년 11월 19일(목)입니다. 2~5교시는 시험 시작 10분 전까지 입실합니다.</p></details>';
+  var io = ("IntersectionObserver" in window) ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); revealed[e.target.dataset.i] = 1; io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -6% 0px" }) : null;
+  function watch() {
+    if (io) io.disconnect();
+    document.querySelectorAll(".stage:not(.in)").forEach(function (el) { if (io) io.observe(el); else el.classList.add("in"); });
+  }
+  function renderStages() {
+    var next = {};
+    $("#stages").innerHTML = CUR.map(function (s, i) {
+      return '<div class="stage' + (revealed[i] ? " in" : "") + '" id="st-' + (i + 1) + '" data-i="' + i + '"><h3><span class="tag">' + esc(s.tag) + "</span>" + (i + 1) + ". " + esc(s.title) + "</h3><p>" + esc(s.note) + "</p>" +
+        (s.guide ? '<div class="box tip"><b>이 프롬프트보다 먼저</b><a href="guide.html">사용설명서</a> 1~3단계로 시트 사본, 설문, 웹 게시를 마치고 게시 주소를 준비합니다.</div>' : "") +
+        s.texts.map(function (t) { var k = kOf(s, t); next[k] = t.text; return sayBox(k, t.cap, t.text, !!prevTexts && prevTexts[k] !== undefined && prevTexts[k] !== t.text); }).join("") +
+        (s.facts ? FACTS : "") + "</div>";
+    }).join("");
+    prevTexts = next;
+    watch();
+  }
+
+  var ICON = {
+    pick: '<path d="M4 6h9M4 12h9M4 18h9"/><path d="M16 6l1.6 1.6L21 4.2M16 12l1.6 1.6 3.4-3.4"/>',
+    stitch: '<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 7l3 3"/>',
+    code: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/>',
+    ship: '<path d="M21 3L3 10.5l7 2.5 2.5 7z"/><path d="M10 13L21 3"/>'
+  };
+  var ORDER = ["pick", "stitch", "code", "ship"];
+  function renderFlow() {
+    var PH = { pick: ["고르기", "이 페이지"], stitch: ["화면 그리기", "구글 스티치"], code: ["만들기", TOOL[S.tool].t], ship: ["올리기", "GitHub Pages"] };
+    var total = 0, got = 0;
+    CUR.forEach(function (s) { s.texts.forEach(function (t) { total++; if (copied[kOf(s, t)]) got++; }); });
+    $("#flow").innerHTML = ORDER.map(function (id, pi) {
+      var items = id === "pick" ? '<a class="fl-item" href="#f" data-pos="pick"><span class="no">↓</span><span>색, 글꼴, 탭 고르기</span></a>' :
+        CUR.map(function (s, i) {
+          if (phOf(i, CUR.length) !== id) return "";
+          var c = s.texts.filter(function (t) { return copied[kOf(s, t)]; }).length;
+          return '<a class="fl-item' + (c === s.texts.length ? " done" : "") + '" href="#st-' + (i + 1) + '" data-pos="' + i + '"><span class="no">' + (i + 1) + "</span><span>" + esc(s.title) + "</span></a>";
+        }).join("");
+      return '<li class="fl-step" style="--i:' + pi + '" data-ph="' + id + '"><span class="fl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[id] + '</svg></span><div class="fl-body"><b>' + PH[id][0] + '</b><span class="fl-where">' + esc(PH[id][1]) + '</span><div class="fl-items">' + items + "</div></div></li>";
+    }).join("");
+    var w = total ? Math.round(got / total * 100) + "%" : "0";
+    $("#fl-got").textContent = got; $("#fl-total").textContent = total;
+    $("#fl-bar").style.width = w; $("#mini-bar").style.width = w;
+    $("#mini-c").textContent = "복사 " + got + "/" + total;
+    spy();
+  }
+  function spy() {
+    var y = 140, pos = "pick", st = document.querySelectorAll(".stage");
+    if ($("#out").getBoundingClientRect().top < y) { pos = 0; for (var i = 0; i < st.length; i++) if (st[i].getBoundingClientRect().top < y) pos = i; }
+    var ph = pos === "pick" ? "pick" : phOf(pos, CUR.length), pi = ORDER.indexOf(ph);
+    document.querySelectorAll(".fl-step").forEach(function (el) { el.classList.toggle("cur", el.dataset.ph === ph); });
+    document.querySelectorAll(".fl-item").forEach(function (el) { el.classList.toggle("cur", el.dataset.pos === String(pos)); });
+    document.querySelectorAll("#mini-dots i").forEach(function (d, j) { d.classList.toggle("on", j <= pi); d.classList.toggle("cur", j === pi); });
+    $("#mini-t").textContent = pos === "pick" ? "고르기: 색, 글꼴, 탭" : (pos + 1) + ". " + CUR[pos].title;
+    $("#mini").classList.toggle("show", $("#flow").getBoundingClientRect().bottom < 0);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function () { if (ticking) return; ticking = true; requestAnimationFrame(function () { ticking = false; spy(); }); }, { passive: true });
+  window.addEventListener("resize", spy);
+  setTimeout(function () { $("#flow").classList.remove("intro"); }, 1400);
+  function renderPreview() {
+    var p = palette(), ph = $("#phone").style, tone = TONE[S.tone];
+    ph.setProperty("--p-primary", p.primary); ph.setProperty("--p-bg", p.bg); ph.setProperty("--p-head", p.head); ph.setProperty("--p-card", p.card); ph.setProperty("--p-ink", p.ink); ph.setProperty("--p-on", p.on);
+    ph.setProperty("--p-headfont", HEAD[S.headfont].css + ',"Noto Sans KR",sans-serif'); ph.setProperty("--p-headw", HEAD[S.headfont].w);
+    ph.setProperty("--p-body", BODY[S.bodyfont].css + ',"Noto Sans KR",sans-serif');
+    ph.setProperty("--p-hand", (HAND[S.hand].css || BODY[S.bodyfont].css) + ',"Noto Sans KR",sans-serif');
+    ph.setProperty("--p-r", Math.min(RADIUS[S.radius].v, 16) + "px");
+    var deco = $("#pv-deco"); deco.innerHTML = DECO[S.mood] || "";
+    if (lastMood !== S.mood) { deco.classList.remove("stamp"); void deco.getBoundingClientRect(); deco.classList.add("stamp"); lastMood = S.mood; }
+    $("#pv-deco").style.color = mix(p.primary, p.head, .25);
+    $("#pv-school").textContent = S.school ? S.school + " · 2027학년도 수능" : "2027학년도 대학수학능력시험";
+    $("#pv-sub").innerHTML = tone.sub;
+    var mm = $("#pv-msg"); mm.textContent = "";
+    msg().split(/ ?\/ ?/).forEach(function (line, i) { if (i) mm.appendChild(document.createElement("br")); mm.appendChild(document.createTextNode(line)); });
+    var sg = document.createElement("span"); sg.className = "s"; sg.textContent = sign(); mm.appendChild(sg);
+    mm.style.fontSize = S.hand === "none" ? ".86rem" : "";
+    $("#pv-tabs").innerHTML = tabNames().map(function (t) { return "<span>" + esc(t) + "</span>"; }).join("");
+    $("#pv-h2").textContent = "선생님, 후배, 부모님이 보낸 편지";
+    $("#pv-btn").textContent = tone.btn;
+    $("#pv-card").className = "ph-card " + S.card + (S.hand === "none" ? " noink" : "");
+    $("#pv-letter").textContent = tone.letter;
+    $("#custom-row").hidden = S.pal !== "custom";
+    $("#message").placeholder = "비워 두면: " + tone.msg;
+  }
+  function update(user) {
+    save(); CUR = stages(); renderPreview(); renderStages(); renderFlow();
+    if (user) { var ph = $("#phone"); ph.classList.remove("bump"); void ph.offsetWidth; ph.classList.add("bump"); }
+  }
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".copy"); if (!b) return;
+    var box = b.closest(".say"), pre = box.querySelector("pre"), text = pre.textContent;
+    var mark = function () { copied[box.dataset.k] = 1; saveCopied(); box.classList.add("was"); renderFlow(); };
+    var done = function () { mark(); b.textContent = "복사했어요"; b.classList.add("done"); setTimeout(function () { b.textContent = "다시 복사"; b.classList.remove("done"); }, 1600); };
+    var select = function () { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); mark(); b.textContent = "선택했어요. Ctrl+C로 복사"; };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, select); else select();
+  });
+
+  update();
+  window.__promptbook = { state: function () { return S; }, stages: stages, set: function (k, v) { S[k] = v; update(); } };
+})();
+</script>
+</body>
+</html>
